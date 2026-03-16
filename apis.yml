@@ -11,7 +11,7 @@ tags:
 - Cryptography
 - Cloud Security
 created: '2024'
-modified: '2026-03-03'
+modified: '2026-03-16'
 url: https://azure.microsoft.com/en-us/services/key-vault/
 specificationVersion: '0.18'
 apis:
@@ -199,9 +199,8 @@ apis:
   - type: X-support
     url: https://azure.microsoft.com/en-us/support/
 maintainers:
-- name: Kin Lane
+- FN: Kin Lane
   email: kin@apievangelist.com
-  url: https://apievangelist.com/
 common:
 - type: X-status
   url: https://status.azure.com/
