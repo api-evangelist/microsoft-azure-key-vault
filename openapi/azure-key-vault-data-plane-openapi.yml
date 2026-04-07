@@ -32,6 +32,11 @@ security:
   - OAuth2Auth: []
 
 tags:
+  - name: Certificates
+    description: >-
+      Operations for creating, importing, managing, and renewing certificates
+      including lifecycle management and certificate authority integration.
+
   - name: Keys
     description: >-
       Operations for creating, importing, managing, and performing
@@ -40,11 +45,6 @@ tags:
     description: >-
       Operations for securely storing and managing secrets such as passwords,
       connection strings, and API keys.
-  - name: Certificates
-    description: >-
-      Operations for creating, importing, managing, and renewing certificates
-      including lifecycle management and certificate authority integration.
-
 paths:
   # ───────────────────────────────────────────────
   # Keys
