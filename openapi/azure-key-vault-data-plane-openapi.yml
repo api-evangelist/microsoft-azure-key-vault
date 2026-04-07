@@ -53,7 +53,7 @@ paths:
   /keys/{key-name}/create:
     post:
       operationId: Keys_CreateKey
-      summary: Create Key
+      summary: Azure Key Vault Create Key
       description: >-
         Creates a new key, stores it, then returns key parameters and
         attributes to the client. If the named key already exists, Azure Key
@@ -87,7 +87,7 @@ paths:
   /keys/{key-name}/{key-version}:
     get:
       operationId: Keys_GetKey
-      summary: Get Key
+      summary: Azure Key Vault Get Key
       description: >-
         Gets the public part of a stored key. The get key operation is
         applicable to all key types. If the requested key is symmetric, then
@@ -114,7 +114,7 @@ paths:
                 $ref: '#/components/schemas/KeyVaultError'
     patch:
       operationId: Keys_UpdateKey
-      summary: Update Key
+      summary: Azure Key Vault Update Key
       description: >-
         The update key operation changes specified attributes of a stored key
         and can be applied to any key type and key version stored in Azure
@@ -148,7 +148,7 @@ paths:
   /keys/{key-name}:
     delete:
       operationId: Keys_DeleteKey
-      summary: Delete Key
+      summary: Azure Key Vault Delete Key
       description: >-
         Deletes a key of any type from storage in Azure Key Vault. Requires
         the keys/delete permission.
@@ -174,7 +174,7 @@ paths:
   /keys:
     get:
       operationId: Keys_GetKeys
-      summary: List Keys
+      summary: Azure Key Vault List Keys
       description: >-
         Retrieves a list of the keys in the Key Vault as JSON Web Key
         structures that contain the public part of a stored key. The list
@@ -202,7 +202,7 @@ paths:
   /keys/{key-name}/{key-version}/encrypt:
     post:
       operationId: Keys_Encrypt
-      summary: Encrypt
+      summary: Azure Key Vault Encrypt
       description: >-
         Encrypts an arbitrary sequence of bytes using an encryption key that
         is stored in a Key Vault. Requires the keys/encrypt permission.
@@ -235,7 +235,7 @@ paths:
   /keys/{key-name}/{key-version}/decrypt:
     post:
       operationId: Keys_Decrypt
-      summary: Decrypt
+      summary: Azure Key Vault Decrypt
       description: >-
         Decrypts a single block of encrypted data using the specified
         encryption key. Requires the keys/decrypt permission.
@@ -268,7 +268,7 @@ paths:
   /keys/{key-name}/{key-version}/sign:
     post:
       operationId: Keys_Sign
-      summary: Sign
+      summary: Azure Key Vault Sign
       description: >-
         Creates a signature from a digest using the specified key. Requires
         the keys/sign permission.
@@ -301,7 +301,7 @@ paths:
   /keys/{key-name}/{key-version}/verify:
     post:
       operationId: Keys_Verify
-      summary: Verify
+      summary: Azure Key Vault Verify
       description: >-
         Verifies a signature using a specified key. Requires the keys/verify
         permission.
@@ -334,7 +334,7 @@ paths:
   /keys/{key-name}/{key-version}/wrapkey:
     post:
       operationId: Keys_WrapKey
-      summary: Wrap Key
+      summary: Azure Key Vault Wrap Key
       description: >-
         Wraps a symmetric key using a specified key. Requires the
         keys/wrapKey permission.
@@ -367,7 +367,7 @@ paths:
   /keys/{key-name}/{key-version}/unwrapkey:
     post:
       operationId: Keys_UnwrapKey
-      summary: Unwrap Key
+      summary: Azure Key Vault Unwrap Key
       description: >-
         Unwraps a symmetric key using the specified key that was initially
         used for wrapping that key. Requires the keys/unwrapKey permission.
@@ -404,7 +404,7 @@ paths:
   /secrets/{secret-name}:
     put:
       operationId: Secrets_SetSecret
-      summary: Set Secret
+      summary: Azure Key Vault Set Secret
       description: >-
         Sets a secret in a specified key vault. The SET operation adds a
         secret to the Azure Key Vault. If the named secret already exists,
@@ -436,7 +436,7 @@ paths:
                 $ref: '#/components/schemas/KeyVaultError'
     delete:
       operationId: Secrets_DeleteSecret
-      summary: Delete Secret
+      summary: Azure Key Vault Delete Secret
       description: >-
         Deletes a secret from a specified key vault. Requires the
         secrets/delete permission.
@@ -462,7 +462,7 @@ paths:
   /secrets/{secret-name}/{secret-version}:
     get:
       operationId: Secrets_GetSecret
-      summary: Get Secret
+      summary: Azure Key Vault Get Secret
       description: >-
         Get a specified secret from a given key vault. The GET operation is
         applicable to any secret stored in Azure Key Vault. Requires the
@@ -488,7 +488,7 @@ paths:
                 $ref: '#/components/schemas/KeyVaultError'
     patch:
       operationId: Secrets_UpdateSecret
-      summary: Update Secret
+      summary: Azure Key Vault Update Secret
       description: >-
         Updates the attributes associated with a specified secret in a given
         key vault. Requires the secrets/set permission.
@@ -521,7 +521,7 @@ paths:
   /secrets:
     get:
       operationId: Secrets_GetSecrets
-      summary: List Secrets
+      summary: Azure Key Vault List Secrets
       description: >-
         List secrets in a specified key vault. The Get Secrets operation is
         applicable to the entire vault. Requires the secrets/list permission.
@@ -547,7 +547,7 @@ paths:
   /secrets/{secret-name}/versions:
     get:
       operationId: Secrets_GetSecretVersions
-      summary: List Secret Versions
+      summary: Azure Key Vault List Secret Versions
       description: >-
         List all versions of the specified secret. Requires the secrets/list
         permission.
@@ -574,7 +574,7 @@ paths:
   /secrets/{secret-name}/backup:
     post:
       operationId: Secrets_BackupSecret
-      summary: Backup Secret
+      summary: Azure Key Vault Backup Secret
       description: >-
         Requests that a backup of the specified secret be downloaded to the
         client. All versions of the secret will be downloaded. Requires the
@@ -601,7 +601,7 @@ paths:
   /secrets/restore:
     post:
       operationId: Secrets_RestoreSecret
-      summary: Restore Secret
+      summary: Azure Key Vault Restore Secret
       description: >-
         Restores a backed up secret, and all its versions, to a vault.
         Requires the secrets/restore permission.
@@ -636,7 +636,7 @@ paths:
   /certificates/{certificate-name}/create:
     post:
       operationId: Certificates_CreateCertificate
-      summary: Create Certificate
+      summary: Azure Key Vault Create Certificate
       description: >-
         Creates a new certificate. If this is the first version, the
         certificate resource is created. Requires the certificates/create
@@ -671,7 +671,7 @@ paths:
   /certificates/{certificate-name}/{certificate-version}:
     get:
       operationId: Certificates_GetCertificate
-      summary: Get Certificate
+      summary: Azure Key Vault Get Certificate
       description: >-
         Gets information about a specific certificate. Requires the
         certificates/get permission.
@@ -696,7 +696,7 @@ paths:
                 $ref: '#/components/schemas/KeyVaultError'
     patch:
       operationId: Certificates_UpdateCertificate
-      summary: Update Certificate
+      summary: Azure Key Vault Update Certificate
       description: >-
         Applies the specified update on the given certificate. Requires the
         certificates/update permission.
@@ -729,7 +729,7 @@ paths:
   /certificates/{certificate-name}:
     delete:
       operationId: Certificates_DeleteCertificate
-      summary: Delete Certificate
+      summary: Azure Key Vault Delete Certificate
       description: >-
         Deletes all versions of a certificate object along with its
         associated policy. Requires the certificates/delete permission.
@@ -755,7 +755,7 @@ paths:
   /certificates:
     get:
       operationId: Certificates_GetCertificates
-      summary: List Certificates
+      summary: Azure Key Vault List Certificates
       description: >-
         List certificates in a specified key vault. Requires the
         certificates/list permission.
@@ -788,7 +788,7 @@ paths:
   /certificates/{certificate-name}/import:
     post:
       operationId: Certificates_ImportCertificate
-      summary: Import Certificate
+      summary: Azure Key Vault Import Certificate
       description: >-
         Imports an existing valid certificate, containing a private key, into
         Azure Key Vault. The certificate to be imported can be in either PFX
@@ -821,7 +821,7 @@ paths:
   /certificates/{certificate-name}/policy:
     get:
       operationId: Certificates_GetCertificatePolicy
-      summary: Get Certificate Policy
+      summary: Azure Key Vault Get Certificate Policy
       description: >-
         Gets the policy for a certificate. Requires the certificates/get
         permission.
@@ -845,7 +845,7 @@ paths:
                 $ref: '#/components/schemas/KeyVaultError'
     patch:
       operationId: Certificates_UpdateCertificatePolicy
-      summary: Update Certificate Policy
+      summary: Azure Key Vault Update Certificate Policy
       description: >-
         Set specified members in the certificate policy. Requires the
         certificates/update permission.
@@ -877,7 +877,7 @@ paths:
   /certificates/{certificate-name}/pending:
     get:
       operationId: Certificates_GetCertificateOperation
-      summary: Get Certificate Operation
+      summary: Azure Key Vault Get Certificate Operation
       description: >-
         Gets the creation operation associated with a specified certificate.
         Requires the certificates/get permission.
@@ -901,7 +901,7 @@ paths:
                 $ref: '#/components/schemas/KeyVaultError'
     delete:
       operationId: Certificates_DeleteCertificateOperation
-      summary: Delete Certificate Operation
+      summary: Azure Key Vault Delete Certificate Operation
       description: >-
         Deletes the creation operation for a specific certificate. Requires
         the certificates/update permission.
