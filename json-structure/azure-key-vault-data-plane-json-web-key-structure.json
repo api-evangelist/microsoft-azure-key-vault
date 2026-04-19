@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "JsonWebKey",
+  "type": "object",
+  "properties": {
+    "kid": {
+      "type": "string"
+    },
+    "key_ops": {
+      "type": "array"
+    },
+    "n": {
+      "type": "string"
+    },
+    "e": {
+      "type": "string"
+    },
+    "d": {
+      "type": "string"
+    },
+    "dp": {
+      "type": "string"
+    },
+    "dq": {
+      "type": "string"
+    },
+    "qi": {
+      "type": "string"
+    },
+    "p": {
+      "type": "string"
+    },
+    "q": {
+      "type": "string"
+    },
+    "k": {
+      "type": "string"
+    },
+    "key_hsm": {
+      "type": "string"
+    },
+    "x": {
+      "type": "string"
+    },
+    "y": {
+      "type": "string"
+    }
+  }
+}

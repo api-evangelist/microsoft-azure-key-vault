@@ -1,0 +1,9 @@
+{
+  "id": "abc123",
+  "kid": "500123",
+  "sid": "500123",
+  "x5t": "example_value",
+  "cer": "example_value",
+  "contentType": "example_value",
+  "tags": "example_value"
+}

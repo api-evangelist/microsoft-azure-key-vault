@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyItem",
+  "type": "object",
+  "description": "The key item containing key metadata.",
+  "properties": {
+    "kid": {
+      "type": "string",
+      "description": "Key identifier."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "True if the key's lifetime is managed by key vault."
+    }
+  }
+}

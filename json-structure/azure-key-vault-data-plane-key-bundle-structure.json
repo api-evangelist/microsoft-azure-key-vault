@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "KeyBundle",
+  "type": "object",
+  "properties": {
+    "tags": {
+      "type": "object"
+    },
+    "managed": {
+      "type": "boolean"
+    }
+  }
+}

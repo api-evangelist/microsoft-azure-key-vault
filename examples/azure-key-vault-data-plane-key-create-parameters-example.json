@@ -1,0 +1,6 @@
+{
+  "key_size": 10,
+  "public_exponent": 10,
+  "key_ops": [],
+  "tags": "example_value"
+}

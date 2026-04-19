@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyOperationsParameters",
+  "type": "object",
+  "description": "The key operations parameters.",
+  "properties": {
+    "alg": {
+      "type": "string",
+      "description": "Algorithm identifier."
+    },
+    "value": {
+      "type": "string",
+      "description": "The value to operate on."
+    },
+    "iv": {
+      "type": "string",
+      "description": "Initialization vector for symmetric algorithms."
+    },
+    "aad": {
+      "type": "string",
+      "description": "Additional data to authenticate but not encrypt/decrypt."
+    },
+    "tag": {
+      "type": "string",
+      "description": "The tag to verify when performing decryption with an authenticated algorithm."
+    }
+  }
+}

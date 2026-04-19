@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeySignParameters",
+  "type": "object",
+  "description": "The key sign parameters.",
+  "properties": {
+    "alg": {
+      "type": "string",
+      "description": "The signing/verification algorithm identifier."
+    },
+    "value": {
+      "type": "string",
+      "description": "The digest value to sign."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LifetimeAction",
+  "type": "object",
+  "description": "Action and its trigger that will be performed by Key Vault over the lifetime of a certificate.",
+  "properties": {
+    "trigger": {
+      "type": "object",
+      "description": "The condition that will execute the action."
+    },
+    "action": {
+      "type": "object",
+      "description": "The action that will be executed."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CertificateOperation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "csr": {
+      "type": "string"
+    },
+    "cancellation_requested": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string"
+    },
+    "status_details": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    }
+  }
+}

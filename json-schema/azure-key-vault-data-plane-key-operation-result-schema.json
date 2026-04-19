@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyOperationResult",
+  "type": "object",
+  "description": "The key operation result.",
+  "properties": {
+    "kid": {
+      "type": "string",
+      "description": "Key identifier."
+    },
+    "value": {
+      "type": "string",
+      "description": "The result of the operation."
+    },
+    "iv": {
+      "type": "string",
+      "description": "Initialization vector for symmetric algorithms."
+    },
+    "tag": {
+      "type": "string",
+      "description": "Authentication tag for authenticated encryption algorithms."
+    },
+    "aad": {
+      "type": "string",
+      "description": "Additional authenticated data."
+    }
+  }
+}

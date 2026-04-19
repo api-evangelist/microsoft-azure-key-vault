@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyVerifyParameters",
+  "type": "object",
+  "description": "The key verify parameters.",
+  "properties": {
+    "alg": {
+      "type": "string",
+      "description": "The signing/verification algorithm identifier."
+    },
+    "digest": {
+      "type": "string",
+      "description": "The digest used for signing."
+    },
+    "value": {
+      "type": "string",
+      "description": "The signature to verify."
+    }
+  }
+}

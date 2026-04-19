@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CertificateUpdateParameters",
+  "type": "object",
+  "description": "The certificate update parameters.",
+  "properties": {
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    }
+  }
+}

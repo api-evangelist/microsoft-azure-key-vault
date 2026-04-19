@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyBundle",
+  "type": "object",
+  "description": "A KeyBundle consisting of a WebKey plus its attributes.",
+  "properties": {
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "True if the key's lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true."
+    }
+  }
+}

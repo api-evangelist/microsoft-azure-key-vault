@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyCreateParameters",
+  "type": "object",
+  "description": "The key create parameters.",
+  "properties": {
+    "key_size": {
+      "type": "integer",
+      "description": "The key size in bits. For example: 2048, 3072, or 4096 for RSA."
+    },
+    "public_exponent": {
+      "type": "integer",
+      "description": "The public exponent for a RSA key."
+    },
+    "key_ops": {
+      "type": "array",
+      "description": "JSON web key operations."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    }
+  }
+}

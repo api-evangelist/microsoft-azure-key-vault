@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CertificateImportParameters",
+  "type": "object",
+  "description": "The certificate import parameters.",
+  "properties": {
+    "value": {
+      "type": "string",
+      "description": "Base64 encoded representation of the certificate object to import. This certificate needs to contain the private key."
+    },
+    "pwd": {
+      "type": "string",
+      "description": "If the private key in base64EncodedCertificate is encrypted, the password used for encryption."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    }
+  }
+}

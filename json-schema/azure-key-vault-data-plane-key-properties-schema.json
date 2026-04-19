@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyProperties",
+  "type": "object",
+  "description": "Properties of the key pair backing a certificate.",
+  "properties": {
+    "exportable": {
+      "type": "boolean",
+      "description": "Indicates if the private key can be exported."
+    },
+    "key_size": {
+      "type": "integer",
+      "description": "The key size in bits. For example: 2048, 3072, or 4096 for RSA."
+    },
+    "reuse_key": {
+      "type": "boolean",
+      "description": "Indicates if the same key pair will be used on certificate renewal."
+    }
+  }
+}

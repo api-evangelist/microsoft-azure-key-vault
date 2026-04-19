@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyUpdateParameters",
+  "type": "object",
+  "description": "The key update parameters.",
+  "properties": {
+    "key_ops": {
+      "type": "array",
+      "description": "JSON web key operations."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CertificatePolicy",
+  "type": "object",
+  "description": "Management policy for a certificate.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The certificate id."
+    },
+    "lifetime_actions": {
+      "type": "array",
+      "description": "Actions that will be performed by Key Vault over the lifetime of a certificate."
+    }
+  }
+}

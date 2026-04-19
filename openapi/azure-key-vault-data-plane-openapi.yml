@@ -15,36 +15,36 @@ info:
     name: Microsoft API License
     url: https://learn.microsoft.com/en-us/legal/microsoft-apis/terms-of-use
   x-apisguru-categories:
-    - security
-    - cloud
+  - security
+  - cloud
   x-logo:
     url: https://azure.microsoft.com/svghandler/key-vault/
 
 servers:
-  - url: https://{vaultName}.vault.azure.net
-    description: Azure Key Vault data plane endpoint
-    variables:
-      vaultName:
-        description: The name of the Key Vault instance
-        default: myvault
+- url: https://{vaultName}.vault.azure.net
+  description: Azure Key Vault data plane endpoint
+  variables:
+    vaultName:
+      description: The name of the Key Vault instance
+      default: myvault
 
 security:
-  - OAuth2Auth: []
+- OAuth2Auth: []
 
 tags:
-  - name: Certificates
-    description: >-
-      Operations for creating, importing, managing, and renewing certificates
-      including lifecycle management and certificate authority integration.
+- name: Certificates
+  description: >-
+    Operations for creating, importing, managing, and renewing certificates
+    including lifecycle management and certificate authority integration.
 
-  - name: Keys
-    description: >-
-      Operations for creating, importing, managing, and performing
-      cryptographic operations with keys.
-  - name: Secrets
-    description: >-
-      Operations for securely storing and managing secrets such as passwords,
-      connection strings, and API keys.
+- name: Keys
+  description: >-
+    Operations for creating, importing, managing, and performing
+    cryptographic operations with keys.
+- name: Secrets
+  description: >-
+    Operations for securely storing and managing secrets such as passwords,
+    connection strings, and API keys.
 paths:
   # ───────────────────────────────────────────────
   # Keys
@@ -60,10 +60,10 @@ paths:
         Vault creates a new version of the key. Requires the keys/create
         permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -84,6 +84,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}/{key-version}:
     get:
       operationId: Keys_GetKey
@@ -94,11 +97,11 @@ paths:
         no key material is released in the response. Requires the keys/get
         permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -112,6 +115,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: Keys_UpdateKey
       summary: Azure Key Vault Update Key
@@ -120,11 +126,11 @@ paths:
         and can be applied to any key type and key version stored in Azure
         Key Vault. Requires the keys/update permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -145,6 +151,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}:
     delete:
       operationId: Keys_DeleteKey
@@ -153,10 +162,10 @@ paths:
         Deletes a key of any type from storage in Azure Key Vault. Requires
         the keys/delete permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -171,6 +180,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys:
     get:
       operationId: Keys_GetKeys
@@ -181,10 +193,10 @@ paths:
         operation is applicable to all key types. Requires the keys/list
         permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/ApiVersionParameter'
-        - $ref: '#/components/parameters/MaxResultsParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/MaxResultsParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -199,6 +211,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}/{key-version}/encrypt:
     post:
       operationId: Keys_Encrypt
@@ -207,11 +222,11 @@ paths:
         Encrypts an arbitrary sequence of bytes using an encryption key that
         is stored in a Key Vault. Requires the keys/encrypt permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -232,6 +247,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}/{key-version}/decrypt:
     post:
       operationId: Keys_Decrypt
@@ -240,11 +258,11 @@ paths:
         Decrypts a single block of encrypted data using the specified
         encryption key. Requires the keys/decrypt permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -265,6 +283,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}/{key-version}/sign:
     post:
       operationId: Keys_Sign
@@ -273,11 +294,11 @@ paths:
         Creates a signature from a digest using the specified key. Requires
         the keys/sign permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -298,6 +319,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}/{key-version}/verify:
     post:
       operationId: Keys_Verify
@@ -306,11 +330,11 @@ paths:
         Verifies a signature using a specified key. Requires the keys/verify
         permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -331,6 +355,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}/{key-version}/wrapkey:
     post:
       operationId: Keys_WrapKey
@@ -339,11 +366,11 @@ paths:
         Wraps a symmetric key using a specified key. Requires the
         keys/wrapKey permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -364,6 +391,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /keys/{key-name}/{key-version}/unwrapkey:
     post:
       operationId: Keys_UnwrapKey
@@ -372,11 +402,11 @@ paths:
         Unwraps a symmetric key using the specified key that was initially
         used for wrapping that key. Requires the keys/unwrapKey permission.
       tags:
-        - Keys
+      - Keys
       parameters:
-        - $ref: '#/components/parameters/KeyNameParameter'
-        - $ref: '#/components/parameters/KeyVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -401,6 +431,9 @@ paths:
   # Secrets
   # ───────────────────────────────────────────────
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /secrets/{secret-name}:
     put:
       operationId: Secrets_SetSecret
@@ -411,10 +444,10 @@ paths:
         Azure Key Vault creates a new version of that secret. Requires the
         secrets/set permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/SecretNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/SecretNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -434,6 +467,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: Secrets_DeleteSecret
       summary: Azure Key Vault Delete Secret
@@ -441,10 +477,10 @@ paths:
         Deletes a secret from a specified key vault. Requires the
         secrets/delete permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/SecretNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/SecretNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -459,6 +495,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /secrets/{secret-name}/{secret-version}:
     get:
       operationId: Secrets_GetSecret
@@ -468,11 +507,11 @@ paths:
         applicable to any secret stored in Azure Key Vault. Requires the
         secrets/get permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/SecretNameParameter'
-        - $ref: '#/components/parameters/SecretVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/SecretNameParameter'
+      - $ref: '#/components/parameters/SecretVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -486,6 +525,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: Secrets_UpdateSecret
       summary: Azure Key Vault Update Secret
@@ -493,11 +535,11 @@ paths:
         Updates the attributes associated with a specified secret in a given
         key vault. Requires the secrets/set permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/SecretNameParameter'
-        - $ref: '#/components/parameters/SecretVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/SecretNameParameter'
+      - $ref: '#/components/parameters/SecretVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -518,6 +560,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /secrets:
     get:
       operationId: Secrets_GetSecrets
@@ -526,10 +571,10 @@ paths:
         List secrets in a specified key vault. The Get Secrets operation is
         applicable to the entire vault. Requires the secrets/list permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/ApiVersionParameter'
-        - $ref: '#/components/parameters/MaxResultsParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/MaxResultsParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -544,6 +589,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /secrets/{secret-name}/versions:
     get:
       operationId: Secrets_GetSecretVersions
@@ -552,11 +600,11 @@ paths:
         List all versions of the specified secret. Requires the secrets/list
         permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/SecretNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
-        - $ref: '#/components/parameters/MaxResultsParameter'
+      - $ref: '#/components/parameters/SecretNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/MaxResultsParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -571,6 +619,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /secrets/{secret-name}/backup:
     post:
       operationId: Secrets_BackupSecret
@@ -580,10 +631,10 @@ paths:
         client. All versions of the secret will be downloaded. Requires the
         secrets/backup permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/SecretNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/SecretNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -598,6 +649,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /secrets/restore:
     post:
       operationId: Secrets_RestoreSecret
@@ -606,9 +660,9 @@ paths:
         Restores a backed up secret, and all its versions, to a vault.
         Requires the secrets/restore permission.
       tags:
-        - Secrets
+      - Secrets
       parameters:
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -633,6 +687,9 @@ paths:
   # Certificates
   # ───────────────────────────────────────────────
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /certificates/{certificate-name}/create:
     post:
       operationId: Certificates_CreateCertificate
@@ -642,10 +699,10 @@ paths:
         certificate resource is created. Requires the certificates/create
         permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -668,6 +725,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /certificates/{certificate-name}/{certificate-version}:
     get:
       operationId: Certificates_GetCertificate
@@ -676,11 +736,11 @@ paths:
         Gets information about a specific certificate. Requires the
         certificates/get permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/CertificateVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/CertificateVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -694,6 +754,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: Certificates_UpdateCertificate
       summary: Azure Key Vault Update Certificate
@@ -701,11 +764,11 @@ paths:
         Applies the specified update on the given certificate. Requires the
         certificates/update permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/CertificateVersionParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/CertificateVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -726,6 +789,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /certificates/{certificate-name}:
     delete:
       operationId: Certificates_DeleteCertificate
@@ -734,10 +800,10 @@ paths:
         Deletes all versions of a certificate object along with its
         associated policy. Requires the certificates/delete permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -752,6 +818,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /certificates:
     get:
       operationId: Certificates_GetCertificates
@@ -760,17 +829,17 @@ paths:
         List certificates in a specified key vault. Requires the
         certificates/list permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/ApiVersionParameter'
-        - $ref: '#/components/parameters/MaxResultsParameter'
-        - name: includePending
-          in: query
-          description: >-
-            Specifies whether to include certificates which are not completely
-            provisioned.
-          schema:
-            type: boolean
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/MaxResultsParameter'
+      - name: includePending
+        in: query
+        description: >-
+          Specifies whether to include certificates which are not completely
+          provisioned.
+        schema:
+          type: boolean
       responses:
         '200':
           description: The request has succeeded.
@@ -785,6 +854,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /certificates/{certificate-name}/import:
     post:
       operationId: Certificates_ImportCertificate
@@ -794,10 +866,10 @@ paths:
         Azure Key Vault. The certificate to be imported can be in either PFX
         or PEM format. Requires the certificates/import permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -818,6 +890,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /certificates/{certificate-name}/policy:
     get:
       operationId: Certificates_GetCertificatePolicy
@@ -826,10 +901,10 @@ paths:
         Gets the policy for a certificate. Requires the certificates/get
         permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -843,6 +918,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: Certificates_UpdateCertificatePolicy
       summary: Azure Key Vault Update Certificate Policy
@@ -850,10 +928,10 @@ paths:
         Set specified members in the certificate policy. Requires the
         certificates/update permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       requestBody:
         required: true
         content:
@@ -874,6 +952,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /certificates/{certificate-name}/pending:
     get:
       operationId: Certificates_GetCertificateOperation
@@ -882,10 +963,10 @@ paths:
         Gets the creation operation associated with a specified certificate.
         Requires the certificates/get permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -899,6 +980,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: Certificates_DeleteCertificateOperation
       summary: Azure Key Vault Delete Certificate Operation
@@ -906,10 +990,10 @@ paths:
         Deletes the creation operation for a specific certificate. Requires
         the certificates/update permission.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/CertificateNameParameter'
-        - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
       responses:
         '200':
           description: The request has succeeded.
@@ -924,6 +1008,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/KeyVaultError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     OAuth2Auth:
@@ -1039,10 +1126,12 @@ components:
           type: string
           description: The error code.
           readOnly: true
+          example: example_value
         message:
           type: string
           description: The error message.
           readOnly: true
+          example: example_value
         innererror:
           $ref: '#/components/schemas/Error'
       readOnly: true
@@ -1053,13 +1142,13 @@ components:
         Reflects the deletion recovery level currently in effect for objects
         in the current vault.
       enum:
-        - Purgeable
-        - Recoverable+Purgeable
-        - Recoverable
-        - Recoverable+ProtectedSubscription
-        - CustomizedRecoverable+Purgeable
-        - CustomizedRecoverable
-        - CustomizedRecoverable+ProtectedSubscription
+      - Purgeable
+      - Recoverable+Purgeable
+      - Recoverable
+      - Recoverable+ProtectedSubscription
+      - CustomizedRecoverable+Purgeable
+      - CustomizedRecoverable
+      - CustomizedRecoverable+ProtectedSubscription
 
     # ───────────────────────────────────────────────
     # Key schemas
@@ -1071,34 +1160,34 @@ components:
         JsonWebKey Key Type (kty), as defined in
         https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.
       enum:
-        - EC
-        - EC-HSM
-        - RSA
-        - RSA-HSM
-        - oct
-        - oct-HSM
+      - EC
+      - EC-HSM
+      - RSA
+      - RSA-HSM
+      - oct
+      - oct-HSM
 
     JsonWebKeyCurveName:
       type: string
       description: Elliptic curve name.
       enum:
-        - P-256
-        - P-384
-        - P-521
-        - P-256K
+      - P-256
+      - P-384
+      - P-521
+      - P-256K
 
     JsonWebKeyOperation:
       type: string
       description: JSON web key operations.
       enum:
-        - encrypt
-        - decrypt
-        - sign
-        - verify
-        - wrapKey
-        - unwrapKey
-        - import
-        - export
+      - encrypt
+      - decrypt
+      - sign
+      - verify
+      - wrapKey
+      - unwrapKey
+      - import
+      - export
 
     JsonWebKey:
       type: object
@@ -1108,6 +1197,7 @@ components:
         kid:
           type: string
           description: Key identifier.
+          example: '500123'
         kty:
           $ref: '#/components/schemas/JsonWebKeyType'
         key_ops:
@@ -1115,57 +1205,70 @@ components:
           items:
             type: string
           description: Supported key operations.
+          example: []
         n:
           type: string
           format: base64url
           description: RSA modulus.
+          example: example_value
         e:
           type: string
           format: base64url
           description: RSA public exponent.
+          example: example_value
         d:
           type: string
           format: base64url
           description: RSA private exponent, or the D component of an EC private key.
+          example: example_value
         dp:
           type: string
           format: base64url
           description: RSA private key parameter.
+          example: example_value
         dq:
           type: string
           format: base64url
           description: RSA private key parameter.
+          example: example_value
         qi:
           type: string
           format: base64url
           description: RSA private key parameter.
+          example: example_value
         p:
           type: string
           format: base64url
           description: RSA secret prime.
+          example: example_value
         q:
           type: string
           format: base64url
           description: RSA secret prime, with p < q.
+          example: example_value
         k:
           type: string
           format: base64url
           description: Symmetric key.
+          example: example_value
         key_hsm:
           type: string
           format: base64url
           description: Protected Key, used with Bring Your Own Key.
+          example: example_value
         crv:
           $ref: '#/components/schemas/JsonWebKeyCurveName'
         x:
           type: string
           format: base64url
           description: X component of an EC public key.
+          example: example_value
         'y':
           type: string
           format: base64url
           description: Y component of an EC public key.
 
+          example: example_value
     KeyAttributes:
       type: object
       description: The attributes of a key managed by the key vault service.
@@ -1173,24 +1276,29 @@ components:
         enabled:
           type: boolean
           description: Determines whether the object is enabled.
+          example: true
         nbf:
           type: integer
           format: unixtime
           description: Not before date in UTC.
+          example: 10
         exp:
           type: integer
           format: unixtime
           description: Expiry date in UTC.
+          example: 10
         created:
           type: integer
           format: unixtime
           description: Creation time in UTC.
           readOnly: true
+          example: 10
         updated:
           type: integer
           format: unixtime
           description: Last updated time in UTC.
           readOnly: true
+          example: 10
         recoveryLevel:
           $ref: '#/components/schemas/DeletionRecoveryLevel'
         recoverableDays:
@@ -1200,14 +1308,17 @@ components:
             softDelete data retention days. Value should be >=7 and <=90
             when softDelete enabled, otherwise 0.
           readOnly: true
+          example: 10
         exportable:
           type: boolean
           description: Indicates if the private key can be exported.
+          example: true
         hsmPlatform:
           type: string
           description: The underlying HSM Platform.
           readOnly: true
 
+          example: example_value
     KeyReleasePolicy:
       type: object
       description: The policy rules under which the key can be exported.
@@ -1216,12 +1327,14 @@ components:
           type: string
           description: Content type and version of key release policy.
           default: application/json; charset=utf-8
+          example: example_value
         data:
           type: string
           format: base64url
           description: >-
             Blob encoding the policy rules under which the key can be
             released.
+          example: example_value
         immutable:
           type: boolean
           description: >-
@@ -1229,6 +1342,7 @@ components:
             immutable, this flag cannot be reset and the policy cannot be
             changed under any circumstances.
 
+          example: true
     KeyBundle:
       type: object
       description: A KeyBundle consisting of a WebKey plus its attributes.
@@ -1242,12 +1356,14 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         managed:
           type: boolean
           description: >-
             True if the key's lifetime is managed by key vault. If this is a
             key backing a certificate, then managed will be true.
           readOnly: true
+          example: true
         release_policy:
           $ref: '#/components/schemas/KeyReleasePolicy'
 
@@ -1255,27 +1371,30 @@ components:
       type: object
       description: A deleted key bundle consisting of a WebKey plus its attributes.
       allOf:
-        - $ref: '#/components/schemas/KeyBundle'
+      - $ref: '#/components/schemas/KeyBundle'
       properties:
         recoveryId:
           type: string
           description: The url of the recovery object, used to identify and recover the deleted key.
+          example: '500123'
         scheduledPurgeDate:
           type: integer
           format: unixtime
           description: The time when the key is scheduled to be purged, in UTC.
           readOnly: true
+          example: 10
         deletedDate:
           type: integer
           format: unixtime
           description: The time when the key was deleted, in UTC.
           readOnly: true
 
+          example: 10
     KeyCreateParameters:
       type: object
       description: The key create parameters.
       required:
-        - kty
+      - kty
       properties:
         kty:
           $ref: '#/components/schemas/JsonWebKeyType'
@@ -1284,15 +1403,18 @@ components:
           format: int32
           description: >-
             The key size in bits. For example: 2048, 3072, or 4096 for RSA.
+          example: 10
         public_exponent:
           type: integer
           format: int32
           description: The public exponent for a RSA key.
+          example: 10
         key_ops:
           type: array
           items:
             $ref: '#/components/schemas/JsonWebKeyOperation'
           description: JSON web key operations.
+          example: []
         attributes:
           $ref: '#/components/schemas/KeyAttributes'
         tags:
@@ -1300,6 +1422,7 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         crv:
           $ref: '#/components/schemas/JsonWebKeyCurveName'
         release_policy:
@@ -1314,6 +1437,7 @@ components:
           items:
             $ref: '#/components/schemas/JsonWebKeyOperation'
           description: JSON web key operations.
+          example: []
         attributes:
           $ref: '#/components/schemas/KeyAttributes'
         tags:
@@ -1321,6 +1445,7 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         release_policy:
           $ref: '#/components/schemas/KeyReleasePolicy'
 
@@ -1328,104 +1453,114 @@ components:
       type: object
       description: The key operations parameters.
       required:
-        - alg
-        - value
+      - alg
+      - value
       properties:
         alg:
           type: string
           description: Algorithm identifier.
           enum:
-            - RSA-OAEP
-            - RSA-OAEP-256
-            - RSA1_5
-            - A128GCM
-            - A192GCM
-            - A256GCM
-            - A128KW
-            - A192KW
-            - A256KW
-            - A128CBC
-            - A192CBC
-            - A256CBC
-            - A128CBCPAD
-            - A192CBCPAD
-            - A256CBCPAD
+          - RSA-OAEP
+          - RSA-OAEP-256
+          - RSA1_5
+          - A128GCM
+          - A192GCM
+          - A256GCM
+          - A128KW
+          - A192KW
+          - A256KW
+          - A128CBC
+          - A192CBC
+          - A256CBC
+          - A128CBCPAD
+          - A192CBCPAD
+          - A256CBCPAD
+          example: RSA-OAEP
         value:
           type: string
           format: base64url
           description: The value to operate on.
+          example: example_value
         iv:
           type: string
           format: base64url
           description: Initialization vector for symmetric algorithms.
+          example: example_value
         aad:
           type: string
           format: base64url
           description: Additional data to authenticate but not encrypt/decrypt.
+          example: example_value
         tag:
           type: string
           format: base64url
           description: The tag to verify when performing decryption with an authenticated algorithm.
 
+          example: example_value
     KeySignParameters:
       type: object
       description: The key sign parameters.
       required:
-        - alg
-        - value
+      - alg
+      - value
       properties:
         alg:
           type: string
           description: The signing/verification algorithm identifier.
           enum:
-            - PS256
-            - PS384
-            - PS512
-            - RS256
-            - RS384
-            - RS512
-            - RSNULL
-            - ES256
-            - ES384
-            - ES512
-            - ES256K
+          - PS256
+          - PS384
+          - PS512
+          - RS256
+          - RS384
+          - RS512
+          - RSNULL
+          - ES256
+          - ES384
+          - ES512
+          - ES256K
+          example: PS256
         value:
           type: string
           format: base64url
           description: The digest value to sign.
 
+          example: example_value
     KeyVerifyParameters:
       type: object
       description: The key verify parameters.
       required:
-        - alg
-        - digest
-        - value
+      - alg
+      - digest
+      - value
       properties:
         alg:
           type: string
           description: The signing/verification algorithm identifier.
           enum:
-            - PS256
-            - PS384
-            - PS512
-            - RS256
-            - RS384
-            - RS512
-            - RSNULL
-            - ES256
-            - ES384
-            - ES512
-            - ES256K
+          - PS256
+          - PS384
+          - PS512
+          - RS256
+          - RS384
+          - RS512
+          - RSNULL
+          - ES256
+          - ES384
+          - ES512
+          - ES256K
+          example: PS256
         digest:
           type: string
           format: base64url
           description: The digest used for signing.
+          example: example_value
         value:
           type: string
           format: base64url
           description: The signature to verify.
 
+          example: example_value
     KeyOperationResult:
       type: object
       description: The key operation result.
@@ -1434,27 +1569,32 @@ components:
           type: string
           description: Key identifier.
           readOnly: true
+          example: '500123'
         value:
           type: string
           format: base64url
           description: The result of the operation.
           readOnly: true
+          example: example_value
         iv:
           type: string
           format: base64url
           description: Initialization vector for symmetric algorithms.
           readOnly: true
+          example: example_value
         tag:
           type: string
           format: base64url
           description: Authentication tag for authenticated encryption algorithms.
           readOnly: true
+          example: example_value
         aad:
           type: string
           format: base64url
           description: Additional authenticated data.
           readOnly: true
 
+          example: example_value
     KeyVerifyResult:
       type: object
       description: The key verify result.
@@ -1464,6 +1604,7 @@ components:
           description: True if the signature is verified, otherwise false.
           readOnly: true
 
+          example: true
     KeyItem:
       type: object
       description: The key item containing key metadata.
@@ -1471,6 +1612,7 @@ components:
         kid:
           type: string
           description: Key identifier.
+          example: '500123'
         attributes:
           $ref: '#/components/schemas/KeyAttributes'
         tags:
@@ -1478,12 +1620,14 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         managed:
           type: boolean
           description: >-
             True if the key's lifetime is managed by key vault.
           readOnly: true
 
+          example: true
     KeyListResult:
       type: object
       description: The key list result.
@@ -1494,6 +1638,7 @@ components:
             $ref: '#/components/schemas/KeyItem'
           description: A list of keys.
           readOnly: true
+          example: []
         nextLink:
           type: string
           description: The URL to get the next set of keys.
@@ -1503,6 +1648,7 @@ components:
     # Secret schemas
     # ───────────────────────────────────────────────
 
+          example: example_value
     SecretAttributes:
       type: object
       description: The secret management attributes.
@@ -1510,24 +1656,29 @@ components:
         enabled:
           type: boolean
           description: Determines whether the object is enabled.
+          example: true
         nbf:
           type: integer
           format: unixtime
           description: Not before date in UTC.
+          example: 10
         exp:
           type: integer
           format: unixtime
           description: Expiry date in UTC.
+          example: 10
         created:
           type: integer
           format: unixtime
           description: Creation time in UTC.
           readOnly: true
+          example: 10
         updated:
           type: integer
           format: unixtime
           description: Last updated time in UTC.
           readOnly: true
+          example: 10
         recoveryLevel:
           $ref: '#/components/schemas/DeletionRecoveryLevel'
         recoverableDays:
@@ -1538,6 +1689,7 @@ components:
             when softDelete enabled, otherwise 0.
           readOnly: true
 
+          example: 10
     SecretBundle:
       type: object
       description: A secret consisting of a value, id and its attributes.
@@ -1545,12 +1697,15 @@ components:
         value:
           type: string
           description: The secret value.
+          example: example_value
         id:
           type: string
           description: The secret id.
+          example: abc123
         contentType:
           type: string
           description: The content type of the secret.
+          example: example_value
         attributes:
           $ref: '#/components/schemas/SecretAttributes'
         tags:
@@ -1558,12 +1713,14 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         kid:
           type: string
           description: >-
             If this is a secret backing a KV certificate, then this field
             specifies the corresponding key backing the KV certificate.
           readOnly: true
+          example: '500123'
         managed:
           type: boolean
           description: >-
@@ -1571,43 +1728,50 @@ components:
             is a secret backing a certificate, then managed will be true.
           readOnly: true
 
+          example: true
     DeletedSecretBundle:
       type: object
       description: A deleted secret bundle consisting of its previous id, attributes, tags, and deletion information.
       allOf:
-        - $ref: '#/components/schemas/SecretBundle'
+      - $ref: '#/components/schemas/SecretBundle'
       properties:
         recoveryId:
           type: string
           description: The url of the recovery object, used to identify and recover the deleted secret.
+          example: '500123'
         scheduledPurgeDate:
           type: integer
           format: unixtime
           description: The time when the secret is scheduled to be purged, in UTC.
           readOnly: true
+          example: 10
         deletedDate:
           type: integer
           format: unixtime
           description: The time when the secret was deleted, in UTC.
           readOnly: true
 
+          example: 10
     SecretSetParameters:
       type: object
       description: The secret set parameters.
       required:
-        - value
+      - value
       properties:
         value:
           type: string
           description: The value of the secret.
+          example: example_value
         tags:
           type: object
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         contentType:
           type: string
           description: Type of the secret value such as a password.
+          example: example_value
         attributes:
           $ref: '#/components/schemas/SecretAttributes'
 
@@ -1618,6 +1782,7 @@ components:
         contentType:
           type: string
           description: Type of the secret value such as a password.
+          example: example_value
         attributes:
           $ref: '#/components/schemas/SecretAttributes'
         tags:
@@ -1626,6 +1791,7 @@ components:
             type: string
           description: Application specific metadata in the form of key-value pairs.
 
+          example: example_value
     SecretItem:
       type: object
       description: The secret item containing secret metadata.
@@ -1633,6 +1799,7 @@ components:
         id:
           type: string
           description: Secret identifier.
+          example: abc123
         attributes:
           $ref: '#/components/schemas/SecretAttributes'
         tags:
@@ -1640,15 +1807,18 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         contentType:
           type: string
           description: Type of the secret value such as a password.
+          example: example_value
         managed:
           type: boolean
           description: >-
             True if the secret's lifetime is managed by key vault.
           readOnly: true
 
+          example: true
     SecretListResult:
       type: object
       description: The secret list result.
@@ -1659,11 +1829,13 @@ components:
             $ref: '#/components/schemas/SecretItem'
           description: A list of secrets.
           readOnly: true
+          example: []
         nextLink:
           type: string
           description: The URL to get the next set of secrets.
           readOnly: true
 
+          example: example_value
     BackupSecretResult:
       type: object
       description: The backup secret result, containing the backup blob.
@@ -1674,11 +1846,12 @@ components:
           description: The backup blob containing the backed up secret.
           readOnly: true
 
+          example: example_value
     SecretRestoreParameters:
       type: object
       description: The secret restore parameters.
       required:
-        - value
+      - value
       properties:
         value:
           type: string
@@ -1689,6 +1862,7 @@ components:
     # Certificate schemas
     # ───────────────────────────────────────────────
 
+          example: example_value
     CertificateAttributes:
       type: object
       description: The certificate management attributes.
@@ -1696,24 +1870,29 @@ components:
         enabled:
           type: boolean
           description: Determines whether the object is enabled.
+          example: true
         nbf:
           type: integer
           format: unixtime
           description: Not before date in UTC.
+          example: 10
         exp:
           type: integer
           format: unixtime
           description: Expiry date in UTC.
+          example: 10
         created:
           type: integer
           format: unixtime
           description: Creation time in UTC.
           readOnly: true
+          example: 10
         updated:
           type: integer
           format: unixtime
           description: Last updated time in UTC.
           readOnly: true
+          example: 10
         recoveryLevel:
           $ref: '#/components/schemas/DeletionRecoveryLevel'
         recoverableDays:
@@ -1724,6 +1903,7 @@ components:
             when softDelete enabled, otherwise 0.
           readOnly: true
 
+          example: 10
     IssuerParameters:
       type: object
       description: Parameters for the issuer of the X509 component of a certificate.
@@ -1733,17 +1913,20 @@ components:
           description: >-
             Name of the referenced issuer object or reserved names; for
             example, 'Self' or 'Unknown'.
+          example: Example Title
         cty:
           type: string
           description: >-
             Certificate type as supported by the provider (optional); for
             example 'OV-SSL', 'EV-SSL'.
+          example: example_value
         cert_transparency:
           type: boolean
           description: >-
             Indicates if the certificates generated under this policy should
             be published to certificate transparency logs.
 
+          example: true
     KeyProperties:
       type: object
       description: Properties of the key pair backing a certificate.
@@ -1751,6 +1934,7 @@ components:
         exportable:
           type: boolean
           description: Indicates if the private key can be exported.
+          example: true
         kty:
           $ref: '#/components/schemas/JsonWebKeyType'
         key_size:
@@ -1758,11 +1942,13 @@ components:
           format: int32
           description: >-
             The key size in bits. For example: 2048, 3072, or 4096 for RSA.
+          example: 10
         reuse_key:
           type: boolean
           description: >-
             Indicates if the same key pair will be used on certificate
             renewal.
+          example: true
         crv:
           $ref: '#/components/schemas/JsonWebKeyCurveName'
 
@@ -1774,6 +1960,7 @@ components:
           type: string
           description: The media type (MIME type).
 
+          example: example_value
     SubjectAlternativeNames:
       type: object
       description: The Subject Alternative Names of a X509 object.
@@ -1783,27 +1970,32 @@ components:
           items:
             type: string
           description: Email addresses.
+          example: user@example.com
         dns_names:
           type: array
           items:
             type: string
           description: Domain names.
+          example: []
         upns:
           type: array
           items:
             type: string
           description: User Principal Names.
+          example: []
         uris:
           type: array
           items:
             type: string
           description: Uniform Resource Identifiers.
+          example: []
         ipAddresses:
           type: array
           items:
             type: string
           description: IP addresses; supports IPv4 and IPv6.
 
+          example: []
     X509CertificateProperties:
       type: object
       description: Properties of the X509 component of a certificate.
@@ -1812,11 +2004,13 @@ components:
           type: string
           description: >-
             The subject name. Should be a valid X509 distinguished name.
+          example: example_value
         ekus:
           type: array
           items:
             type: string
           description: The enhanced key usage.
+          example: []
         sans:
           $ref: '#/components/schemas/SubjectAlternativeNames'
         key_usage:
@@ -1824,23 +2018,25 @@ components:
           items:
             type: string
             enum:
-              - digitalSignature
-              - nonRepudiation
-              - keyEncipherment
-              - dataEncipherment
-              - keyAgreement
-              - keyCertSign
-              - cRLSign
-              - encipherOnly
-              - decipherOnly
+            - digitalSignature
+            - nonRepudiation
+            - keyEncipherment
+            - dataEncipherment
+            - keyAgreement
+            - keyCertSign
+            - cRLSign
+            - encipherOnly
+            - decipherOnly
           description: >-
             Defines how the certificate's key may be used.
+          example: []
         validity_months:
           type: integer
           format: int32
           minimum: 0
           description: The duration that the certificate is valid in months.
 
+          example: 10
     LifetimeAction:
       type: object
       description: >-
@@ -1862,6 +2058,7 @@ components:
               type: integer
               format: int32
               description: Days before expiry to attempt renewal.
+          example: example_value
         action:
           type: object
           description: The action that will be executed.
@@ -1869,10 +2066,11 @@ components:
             action_type:
               type: string
               enum:
-                - EmailContacts
-                - AutoRenew
+              - EmailContacts
+              - AutoRenew
               description: The type of the action.
 
+          example: example_value
     CertificatePolicy:
       type: object
       description: Management policy for a certificate.
@@ -1881,6 +2079,7 @@ components:
           type: string
           description: The certificate id.
           readOnly: true
+          example: abc123
         key_props:
           $ref: '#/components/schemas/KeyProperties'
         secret_props:
@@ -1894,6 +2093,7 @@ components:
           description: >-
             Actions that will be performed by Key Vault over the lifetime of
             a certificate.
+          example: []
         issuer:
           $ref: '#/components/schemas/IssuerParameters'
         attributes:
@@ -1906,23 +2106,29 @@ components:
         id:
           type: string
           description: The certificate id.
+          example: abc123
         kid:
           type: string
           description: The key id.
+          example: '500123'
         sid:
           type: string
           description: The secret id.
+          example: '500123'
         x5t:
           type: string
           format: base64url
           description: Thumbprint of the certificate.
+          example: example_value
         cer:
           type: string
           format: byte
           description: CER contents of x509 certificate.
+          example: example_value
         contentType:
           type: string
           description: The content type of the secret.
+          example: example_value
         attributes:
           $ref: '#/components/schemas/CertificateAttributes'
         tags:
@@ -1930,6 +2136,7 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         policy:
           $ref: '#/components/schemas/CertificatePolicy'
 
@@ -1937,22 +2144,25 @@ components:
       type: object
       description: A deleted certificate bundle consisting of its previous id, attributes, tags, and deletion information.
       allOf:
-        - $ref: '#/components/schemas/CertificateBundle'
+      - $ref: '#/components/schemas/CertificateBundle'
       properties:
         recoveryId:
           type: string
           description: The url of the recovery object, used to identify and recover the deleted certificate.
+          example: '500123'
         scheduledPurgeDate:
           type: integer
           format: unixtime
           description: The time when the certificate is scheduled to be purged, in UTC.
           readOnly: true
+          example: 10
         deletedDate:
           type: integer
           format: unixtime
           description: The time when the certificate was deleted, in UTC.
           readOnly: true
 
+          example: 10
     CertificateCreateParameters:
       type: object
       description: The certificate create parameters.
@@ -1967,22 +2177,25 @@ components:
             type: string
           description: Application specific metadata in the form of key-value pairs.
 
+          example: example_value
     CertificateImportParameters:
       type: object
       description: The certificate import parameters.
       required:
-        - value
+      - value
       properties:
         value:
           type: string
           description: >-
             Base64 encoded representation of the certificate object to
             import. This certificate needs to contain the private key.
+          example: example_value
         pwd:
           type: string
           description: >-
             If the private key in base64EncodedCertificate is encrypted,
             the password used for encryption.
+          example: example_value
         policy:
           $ref: '#/components/schemas/CertificatePolicy'
         attributes:
@@ -1993,6 +2206,7 @@ components:
             type: string
           description: Application specific metadata in the form of key-value pairs.
 
+          example: example_value
     CertificateUpdateParameters:
       type: object
       description: The certificate update parameters.
@@ -2007,6 +2221,7 @@ components:
             type: string
           description: Application specific metadata in the form of key-value pairs.
 
+          example: example_value
     CertificateOperation:
       type: object
       description: >-
@@ -2017,6 +2232,7 @@ components:
           type: string
           description: The certificate id.
           readOnly: true
+          example: abc123
         issuer:
           $ref: '#/components/schemas/IssuerParameters'
         csr:
@@ -2025,27 +2241,33 @@ components:
           description: >-
             The certificate signing request (CSR) that is being used in the
             certificate operation.
+          example: example_value
         cancellation_requested:
           type: boolean
           description: >-
             Indicates if cancellation was requested on the certificate
             operation.
+          example: true
         status:
           type: string
           description: Status of the certificate operation.
+          example: example_value
         status_details:
           type: string
           description: The status details of the certificate operation.
+          example: example_value
         error:
           $ref: '#/components/schemas/Error'
         target:
           type: string
           description: >-
             Location which contains the result of the certificate operation.
+          example: example_value
         request_id:
           type: string
           description: Identifier for the certificate operation.
 
+          example: '500123'
     CertificateItem:
       type: object
       description: The certificate item containing certificate metadata.
@@ -2053,6 +2275,7 @@ components:
         id:
           type: string
           description: Certificate identifier.
+          example: abc123
         attributes:
           $ref: '#/components/schemas/CertificateAttributes'
         tags:
@@ -2060,14 +2283,17 @@ components:
           additionalProperties:
             type: string
           description: Application specific metadata in the form of key-value pairs.
+          example: example_value
         x5t:
           type: string
           format: base64url
           description: Thumbprint of the certificate.
+          example: example_value
         subject:
           type: string
           description: The subject name of the certificate.
 
+          example: example_value
     CertificateListResult:
       type: object
       description: The certificate list result.
@@ -2078,11 +2304,13 @@ components:
             $ref: '#/components/schemas/CertificateItem'
           description: A list of certificates.
           readOnly: true
+          example: []
         nextLink:
           type: string
           description: The URL to get the next set of certificates.
           readOnly: true
 
+          example: example_value
 externalDocs:
   description: Azure Key Vault REST API Reference
   url: https://learn.microsoft.com/en-us/rest/api/keyvault/

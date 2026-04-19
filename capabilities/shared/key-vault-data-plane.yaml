@@ -1,0 +1,383 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Azure Key Vault Data Plane API"
+  description: "Azure Key Vault Data Plane API for managing keys, secrets, and certificates with cryptographic operations."
+  tags:
+    - Azure
+    - Key Vault
+    - Security
+    - Cryptography
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      AZURE_KEY_VAULT_TOKEN: AZURE_KEY_VAULT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: key-vault
+      baseUri: https://myvault.vault.azure.net
+      description: "Azure Key Vault Data Plane API for key, secret, and certificate operations."
+      authentication:
+        type: bearer
+        token: "{{AZURE_KEY_VAULT_TOKEN}}"
+      resources:
+        - name: keys
+          path: /keys
+          description: "Key management."
+          operations:
+            - name: list-keys
+              method: GET
+              description: "List keys in the vault."
+              inputParameters:
+                - name: api-version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: key-create
+          path: /keys/{key-name}/create
+          description: "Key creation."
+          operations:
+            - name: create-key
+              method: POST
+              description: "Create a new key."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  kty: "{{tools.keyType}}"
+        - name: key-details
+          path: /keys/{key-name}/{key-version}
+          description: "Individual key operations."
+          operations:
+            - name: get-key
+              method: GET
+              description: "Get a key."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+                - name: key-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-key
+              method: PATCH
+              description: "Update key attributes."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+                - name: key-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: key-delete
+          path: /keys/{key-name}
+          description: "Key deletion."
+          operations:
+            - name: delete-key
+              method: DELETE
+              description: "Delete a key."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: key-encrypt
+          path: /keys/{key-name}/{key-version}/encrypt
+          description: "Encryption operations."
+          operations:
+            - name: encrypt
+              method: POST
+              description: "Encrypt data using a key."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+                - name: key-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  alg: "{{tools.algorithm}}"
+                  value: "{{tools.value}}"
+        - name: key-decrypt
+          path: /keys/{key-name}/{key-version}/decrypt
+          description: "Decryption operations."
+          operations:
+            - name: decrypt
+              method: POST
+              description: "Decrypt data using a key."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+                - name: key-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  alg: "{{tools.algorithm}}"
+                  value: "{{tools.value}}"
+        - name: key-sign
+          path: /keys/{key-name}/{key-version}/sign
+          description: "Signing operations."
+          operations:
+            - name: sign
+              method: POST
+              description: "Sign a digest using a key."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+                - name: key-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  alg: "{{tools.algorithm}}"
+                  value: "{{tools.digest}}"
+        - name: key-verify
+          path: /keys/{key-name}/{key-version}/verify
+          description: "Verification operations."
+          operations:
+            - name: verify
+              method: POST
+              description: "Verify a signature."
+              inputParameters:
+                - name: key-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key name."
+                - name: key-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Key version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  alg: "{{tools.algorithm}}"
+                  digest: "{{tools.digest}}"
+                  value: "{{tools.signature}}"
+        - name: secrets
+          path: /secrets
+          description: "Secret management."
+          operations:
+            - name: list-secrets
+              method: GET
+              description: "List secrets in the vault."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: secret-set
+          path: /secrets/{secret-name}
+          description: "Secret creation and deletion."
+          operations:
+            - name: set-secret
+              method: PUT
+              description: "Set a secret value."
+              inputParameters:
+                - name: secret-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Secret name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  value: "{{tools.value}}"
+            - name: delete-secret
+              method: DELETE
+              description: "Delete a secret."
+              inputParameters:
+                - name: secret-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Secret name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: secret-details
+          path: /secrets/{secret-name}/{secret-version}
+          description: "Individual secret operations."
+          operations:
+            - name: get-secret
+              method: GET
+              description: "Get a secret value."
+              inputParameters:
+                - name: secret-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Secret name."
+                - name: secret-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Secret version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: certificates
+          path: /certificates
+          description: "Certificate management."
+          operations:
+            - name: list-certificates
+              method: GET
+              description: "List certificates in the vault."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: certificate-create
+          path: /certificates/{certificate-name}/create
+          description: "Certificate creation."
+          operations:
+            - name: create-certificate
+              method: POST
+              description: "Create a new certificate."
+              inputParameters:
+                - name: certificate-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Certificate name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: certificate-details
+          path: /certificates/{certificate-name}/{certificate-version}
+          description: "Individual certificate operations."
+          operations:
+            - name: get-certificate
+              method: GET
+              description: "Get a certificate."
+              inputParameters:
+                - name: certificate-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Certificate name."
+                - name: certificate-version
+                  in: path
+                  type: string
+                  required: true
+                  description: "Certificate version."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: certificate-delete
+          path: /certificates/{certificate-name}
+          description: "Certificate deletion."
+          operations:
+            - name: delete-certificate
+              method: DELETE
+              description: "Delete a certificate."
+              inputParameters:
+                - name: certificate-name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Certificate name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

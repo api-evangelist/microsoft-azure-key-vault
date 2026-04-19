@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SubjectAlternativeNames",
+  "type": "object",
+  "properties": {
+    "emails": {
+      "type": "array"
+    },
+    "dns_names": {
+      "type": "array"
+    },
+    "upns": {
+      "type": "array"
+    },
+    "uris": {
+      "type": "array"
+    },
+    "ipAddresses": {
+      "type": "array"
+    }
+  }
+}

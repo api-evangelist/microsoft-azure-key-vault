@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "KeyCreateParameters",
+  "type": "object",
+  "properties": {
+    "key_size": {
+      "type": "integer"
+    },
+    "public_exponent": {
+      "type": "integer"
+    },
+    "key_ops": {
+      "type": "array"
+    },
+    "tags": {
+      "type": "object"
+    }
+  }
+}

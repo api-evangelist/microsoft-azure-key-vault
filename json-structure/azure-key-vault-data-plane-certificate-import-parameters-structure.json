@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CertificateImportParameters",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "string"
+    },
+    "pwd": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+name: azure-key-vault API Vocabulary
+provider: azure-key-vault
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 29
+schemas: 45
+tags:
+- Certificates
+- Keys
+- Secrets

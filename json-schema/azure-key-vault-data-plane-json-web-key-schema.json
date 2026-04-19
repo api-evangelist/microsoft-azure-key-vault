@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JsonWebKey",
+  "type": "object",
+  "description": "As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18.",
+  "properties": {
+    "kid": {
+      "type": "string",
+      "description": "Key identifier."
+    },
+    "key_ops": {
+      "type": "array",
+      "description": "Supported key operations."
+    },
+    "n": {
+      "type": "string",
+      "description": "RSA modulus."
+    },
+    "e": {
+      "type": "string",
+      "description": "RSA public exponent."
+    },
+    "d": {
+      "type": "string",
+      "description": "RSA private exponent, or the D component of an EC private key."
+    },
+    "dp": {
+      "type": "string",
+      "description": "RSA private key parameter."
+    },
+    "dq": {
+      "type": "string",
+      "description": "RSA private key parameter."
+    },
+    "qi": {
+      "type": "string",
+      "description": "RSA private key parameter."
+    },
+    "p": {
+      "type": "string",
+      "description": "RSA secret prime."
+    },
+    "q": {
+      "type": "string",
+      "description": "RSA secret prime, with p < q."
+    },
+    "k": {
+      "type": "string",
+      "description": "Symmetric key."
+    },
+    "key_hsm": {
+      "type": "string",
+      "description": "Protected Key, used with Bring Your Own Key."
+    },
+    "x": {
+      "type": "string",
+      "description": "X component of an EC public key."
+    },
+    "y": {
+      "type": "string",
+      "description": "Y component of an EC public key."
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "KeyOperationsParameters",
+  "type": "object",
+  "properties": {
+    "alg": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "iv": {
+      "type": "string"
+    },
+    "aad": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string"
+    }
+  }
+}

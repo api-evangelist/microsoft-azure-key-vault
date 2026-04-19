@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyAttributes",
+  "type": "object",
+  "description": "The attributes of a key managed by the key vault service.",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Determines whether the object is enabled."
+    },
+    "nbf": {
+      "type": "integer",
+      "description": "Not before date in UTC."
+    },
+    "exp": {
+      "type": "integer",
+      "description": "Expiry date in UTC."
+    },
+    "created": {
+      "type": "integer",
+      "description": "Creation time in UTC."
+    },
+    "updated": {
+      "type": "integer",
+      "description": "Last updated time in UTC."
+    },
+    "recoverableDays": {
+      "type": "integer",
+      "description": "softDelete data retention days. Value should be >=7 and <=90 when softDelete enabled, otherwise 0."
+    },
+    "exportable": {
+      "type": "boolean",
+      "description": "Indicates if the private key can be exported."
+    },
+    "hsmPlatform": {
+      "type": "string",
+      "description": "The underlying HSM Platform."
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "kid": "500123",
+  "value": "example_value",
+  "iv": "example_value",
+  "tag": "example_value",
+  "aad": "example_value"
+}

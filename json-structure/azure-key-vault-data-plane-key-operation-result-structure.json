@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "KeyOperationResult",
+  "type": "object",
+  "properties": {
+    "kid": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "iv": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string"
+    },
+    "aad": {
+      "type": "string"
+    }
+  }
+}

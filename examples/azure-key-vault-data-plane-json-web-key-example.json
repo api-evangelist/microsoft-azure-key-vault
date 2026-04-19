@@ -1,0 +1,16 @@
+{
+  "kid": "500123",
+  "key_ops": [],
+  "n": "example_value",
+  "e": "example_value",
+  "d": "example_value",
+  "dp": "example_value",
+  "dq": "example_value",
+  "qi": "example_value",
+  "p": "example_value",
+  "q": "example_value",
+  "k": "example_value",
+  "key_hsm": "example_value",
+  "x": "example_value",
+  "y": "example_value"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CertificateItem",
+  "type": "object",
+  "description": "The certificate item containing certificate metadata.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Certificate identifier."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    },
+    "x5t": {
+      "type": "string",
+      "description": "Thumbprint of the certificate."
+    },
+    "subject": {
+      "type": "string",
+      "description": "The subject name of the certificate."
+    }
+  }
+}

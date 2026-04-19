@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CertificateOperation",
+  "type": "object",
+  "description": "A certificate operation is returned in case of asynchronous requests.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The certificate id."
+    },
+    "csr": {
+      "type": "string",
+      "description": "The certificate signing request (CSR) that is being used in the certificate operation."
+    },
+    "cancellation_requested": {
+      "type": "boolean",
+      "description": "Indicates if cancellation was requested on the certificate operation."
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the certificate operation."
+    },
+    "status_details": {
+      "type": "string",
+      "description": "The status details of the certificate operation."
+    },
+    "target": {
+      "type": "string",
+      "description": "Location which contains the result of the certificate operation."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Identifier for the certificate operation."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "X509CertificateProperties",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string"
+    },
+    "ekus": {
+      "type": "array"
+    },
+    "key_usage": {
+      "type": "array"
+    },
+    "validity_months": {
+      "type": "integer"
+    }
+  }
+}

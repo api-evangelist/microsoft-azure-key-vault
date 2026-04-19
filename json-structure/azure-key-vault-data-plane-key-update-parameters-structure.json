@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "KeyUpdateParameters",
+  "type": "object",
+  "properties": {
+    "key_ops": {
+      "type": "array"
+    },
+    "tags": {
+      "type": "object"
+    }
+  }
+}

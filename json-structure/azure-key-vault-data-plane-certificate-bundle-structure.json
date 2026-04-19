@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CertificateBundle",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "kid": {
+      "type": "string"
+    },
+    "sid": {
+      "type": "string"
+    },
+    "x5t": {
+      "type": "string"
+    },
+    "cer": {
+      "type": "string"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "X509CertificateProperties",
+  "type": "object",
+  "description": "Properties of the X509 component of a certificate.",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "description": "The subject name. Should be a valid X509 distinguished name."
+    },
+    "ekus": {
+      "type": "array",
+      "description": "The enhanced key usage."
+    },
+    "key_usage": {
+      "type": "array",
+      "description": "Defines how the certificate's key may be used."
+    },
+    "validity_months": {
+      "type": "integer",
+      "description": "The duration that the certificate is valid in months."
+    }
+  }
+}

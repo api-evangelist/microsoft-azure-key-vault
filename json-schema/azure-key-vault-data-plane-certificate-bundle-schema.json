@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CertificateBundle",
+  "type": "object",
+  "description": "A certificate bundle consists of a certificate (X509) plus its attributes.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The certificate id."
+    },
+    "kid": {
+      "type": "string",
+      "description": "The key id."
+    },
+    "sid": {
+      "type": "string",
+      "description": "The secret id."
+    },
+    "x5t": {
+      "type": "string",
+      "description": "Thumbprint of the certificate."
+    },
+    "cer": {
+      "type": "string",
+      "description": "CER contents of x509 certificate."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The content type of the secret."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Application specific metadata in the form of key-value pairs."
+    }
+  }
+}
