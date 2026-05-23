@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JsonWebKeyOperation",
+  "title": "JsonWebKeyOperation",
+  "type": "string",
+  "description": "JSON web key operations.",
+  "enum": [
+    "encrypt",
+    "decrypt",
+    "sign",
+    "verify",
+    "wrapKey",
+    "unwrapKey",
+    "import",
+    "export"
+  ]
+}

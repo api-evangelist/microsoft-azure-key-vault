@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyVerifyResult",
+  "title": "KeyVerifyResult",
+  "type": "object",
+  "description": "The key verify result.",
+  "properties": {
+    "value": {
+      "type": "boolean",
+      "description": "True if the signature is verified, otherwise false.",
+      "readOnly": true,
+      "example": true
+    }
+  }
+}

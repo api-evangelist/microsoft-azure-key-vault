@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyAttributes",
+  "title": "KeyAttributes",
+  "type": "object",
+  "description": "The attributes of a key managed by the key vault service.",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Determines whether the object is enabled.",
+      "example": true
+    },
+    "nbf": {
+      "type": "integer",
+      "format": "unixtime",
+      "description": "Not before date in UTC.",
+      "example": 10
+    },
+    "exp": {
+      "type": "integer",
+      "format": "unixtime",
+      "description": "Expiry date in UTC.",
+      "example": 10
+    },
+    "created": {
+      "type": "integer",
+      "format": "unixtime",
+      "description": "Creation time in UTC.",
+      "readOnly": true,
+      "example": 10
+    },
+    "updated": {
+      "type": "integer",
+      "format": "unixtime",
+      "description": "Last updated time in UTC.",
+      "readOnly": true,
+      "example": 10
+    },
+    "recoveryLevel": {
+      "$ref": "#/components/schemas/DeletionRecoveryLevel"
+    },
+    "recoverableDays": {
+      "type": "integer",
+      "format": "int32",
+      "description": "softDelete data retention days. Value should be >=7 and <=90 when softDelete enabled, otherwise 0.",
+      "readOnly": true,
+      "example": 10
+    },
+    "exportable": {
+      "type": "boolean",
+      "description": "Indicates if the private key can be exported.",
+      "example": true
+    },
+    "hsmPlatform": {
+      "type": "string",
+      "description": "The underlying HSM Platform.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  }
+}

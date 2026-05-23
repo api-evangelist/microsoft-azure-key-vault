@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyProperties",
+  "title": "KeyProperties",
+  "type": "object",
+  "description": "Properties of the key pair backing a certificate.",
+  "properties": {
+    "exportable": {
+      "type": "boolean",
+      "description": "Indicates if the private key can be exported.",
+      "example": true
+    },
+    "kty": {
+      "$ref": "#/components/schemas/JsonWebKeyType"
+    },
+    "key_size": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The key size in bits. For example: 2048, 3072, or 4096 for RSA.",
+      "example": 10
+    },
+    "reuse_key": {
+      "type": "boolean",
+      "description": "Indicates if the same key pair will be used on certificate renewal.",
+      "example": true
+    },
+    "crv": {
+      "$ref": "#/components/schemas/JsonWebKeyCurveName"
+    }
+  }
+}

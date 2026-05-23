@@ -1,0 +1,561 @@
+{
+  "provider": "Azure Key Vault",
+  "providerId": "microsoft-azure-key-vault",
+  "kind": "json-structure",
+  "description": "Structural overview of the Azure Key Vault API surface; extracted from openapi/.",
+  "schemaCount": 45,
+  "operationCount": 29,
+  "schemas": [
+    {
+      "name": "KeyVaultError",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "DeletionRecoveryLevel",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "JsonWebKeyType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "JsonWebKeyCurveName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "JsonWebKeyOperation",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "JsonWebKey",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "KeyAttributes",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "KeyReleasePolicy",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "KeyBundle",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "DeletedKeyBundle",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "KeyCreateParameters",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "kty"
+      ]
+    },
+    {
+      "name": "KeyUpdateParameters",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "KeyOperationsParameters",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "alg",
+        "value"
+      ]
+    },
+    {
+      "name": "KeySignParameters",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "alg",
+        "value"
+      ]
+    },
+    {
+      "name": "KeyVerifyParameters",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "alg",
+        "digest",
+        "value"
+      ]
+    },
+    {
+      "name": "KeyOperationResult",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "KeyVerifyResult",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "KeyItem",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "KeyListResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SecretAttributes",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "SecretBundle",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "DeletedSecretBundle",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SecretSetParameters",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "value"
+      ]
+    },
+    {
+      "name": "SecretUpdateParameters",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SecretItem",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "SecretListResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "BackupSecretResult",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SecretRestoreParameters",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "value"
+      ]
+    },
+    {
+      "name": "CertificateAttributes",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "IssuerParameters",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "KeyProperties",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "SecretProperties",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SubjectAlternativeNames",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "X509CertificateProperties",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "LifetimeAction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CertificatePolicy",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "CertificateBundle",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "DeletedCertificateBundle",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CertificateCreateParameters",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CertificateImportParameters",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "value"
+      ]
+    },
+    {
+      "name": "CertificateUpdateParameters",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CertificateOperation",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "CertificateItem",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CertificateListResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/keys/{key-name}/create",
+      "operationId": "Keys_CreateKey",
+      "summary": "Azure Key Vault Create Key",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/keys/{key-name}/{key-version}",
+      "operationId": "Keys_GetKey",
+      "summary": "Azure Key Vault Get Key",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/keys/{key-name}/{key-version}",
+      "operationId": "Keys_UpdateKey",
+      "summary": "Azure Key Vault Update Key",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/keys/{key-name}",
+      "operationId": "Keys_DeleteKey",
+      "summary": "Azure Key Vault Delete Key",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/keys",
+      "operationId": "Keys_GetKeys",
+      "summary": "Azure Key Vault List Keys",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/keys/{key-name}/{key-version}/encrypt",
+      "operationId": "Keys_Encrypt",
+      "summary": "Azure Key Vault Encrypt",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/keys/{key-name}/{key-version}/decrypt",
+      "operationId": "Keys_Decrypt",
+      "summary": "Azure Key Vault Decrypt",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/keys/{key-name}/{key-version}/sign",
+      "operationId": "Keys_Sign",
+      "summary": "Azure Key Vault Sign",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/keys/{key-name}/{key-version}/verify",
+      "operationId": "Keys_Verify",
+      "summary": "Azure Key Vault Verify",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/keys/{key-name}/{key-version}/wrapkey",
+      "operationId": "Keys_WrapKey",
+      "summary": "Azure Key Vault Wrap Key",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/keys/{key-name}/{key-version}/unwrapkey",
+      "operationId": "Keys_UnwrapKey",
+      "summary": "Azure Key Vault Unwrap Key",
+      "tags": [
+        "Keys"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/secrets/{secret-name}",
+      "operationId": "Secrets_SetSecret",
+      "summary": "Azure Key Vault Set Secret",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/secrets/{secret-name}",
+      "operationId": "Secrets_DeleteSecret",
+      "summary": "Azure Key Vault Delete Secret",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/secrets/{secret-name}/{secret-version}",
+      "operationId": "Secrets_GetSecret",
+      "summary": "Azure Key Vault Get Secret",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/secrets/{secret-name}/{secret-version}",
+      "operationId": "Secrets_UpdateSecret",
+      "summary": "Azure Key Vault Update Secret",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/secrets",
+      "operationId": "Secrets_GetSecrets",
+      "summary": "Azure Key Vault List Secrets",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/secrets/{secret-name}/versions",
+      "operationId": "Secrets_GetSecretVersions",
+      "summary": "Azure Key Vault List Secret Versions",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/secrets/{secret-name}/backup",
+      "operationId": "Secrets_BackupSecret",
+      "summary": "Azure Key Vault Backup Secret",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/secrets/restore",
+      "operationId": "Secrets_RestoreSecret",
+      "summary": "Azure Key Vault Restore Secret",
+      "tags": [
+        "Secrets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/certificates/{certificate-name}/create",
+      "operationId": "Certificates_CreateCertificate",
+      "summary": "Azure Key Vault Create Certificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/certificates/{certificate-name}/{certificate-version}",
+      "operationId": "Certificates_GetCertificate",
+      "summary": "Azure Key Vault Get Certificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/certificates/{certificate-name}/{certificate-version}",
+      "operationId": "Certificates_UpdateCertificate",
+      "summary": "Azure Key Vault Update Certificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/certificates/{certificate-name}",
+      "operationId": "Certificates_DeleteCertificate",
+      "summary": "Azure Key Vault Delete Certificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/certificates",
+      "operationId": "Certificates_GetCertificates",
+      "summary": "Azure Key Vault List Certificates",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/certificates/{certificate-name}/import",
+      "operationId": "Certificates_ImportCertificate",
+      "summary": "Azure Key Vault Import Certificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/certificates/{certificate-name}/policy",
+      "operationId": "Certificates_GetCertificatePolicy",
+      "summary": "Azure Key Vault Get Certificate Policy",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/certificates/{certificate-name}/policy",
+      "operationId": "Certificates_UpdateCertificatePolicy",
+      "summary": "Azure Key Vault Update Certificate Policy",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/certificates/{certificate-name}/pending",
+      "operationId": "Certificates_GetCertificateOperation",
+      "summary": "Azure Key Vault Get Certificate Operation",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/certificates/{certificate-name}/pending",
+      "operationId": "Certificates_DeleteCertificateOperation",
+      "summary": "Azure Key Vault Delete Certificate Operation",
+      "tags": [
+        "Certificates"
+      ]
+    }
+  ]
+}

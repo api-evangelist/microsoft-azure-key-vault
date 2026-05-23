@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyReleasePolicy",
+  "title": "KeyReleasePolicy",
+  "type": "object",
+  "description": "The policy rules under which the key can be exported.",
+  "properties": {
+    "contentType": {
+      "type": "string",
+      "description": "Content type and version of key release policy.",
+      "default": "application/json; charset=utf-8",
+      "example": "example_value"
+    },
+    "data": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Blob encoding the policy rules under which the key can be released.",
+      "example": "example_value"
+    },
+    "immutable": {
+      "type": "boolean",
+      "description": "Defines the mutability state of the policy. Once marked immutable, this flag cannot be reset and the policy cannot be changed under any circumstances.",
+      "example": true
+    }
+  }
+}

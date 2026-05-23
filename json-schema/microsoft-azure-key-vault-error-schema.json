@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Error",
+  "title": "Error",
+  "type": "object",
+  "description": "The key vault server error.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "The error code.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "message": {
+      "type": "string",
+      "description": "The error message.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "innererror": {
+      "$ref": "#/components/schemas/Error"
+    }
+  },
+  "readOnly": true
+}

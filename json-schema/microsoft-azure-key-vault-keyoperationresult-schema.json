@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyOperationResult",
+  "title": "KeyOperationResult",
+  "type": "object",
+  "description": "The key operation result.",
+  "properties": {
+    "kid": {
+      "type": "string",
+      "description": "Key identifier.",
+      "readOnly": true,
+      "example": "500123"
+    },
+    "value": {
+      "type": "string",
+      "format": "base64url",
+      "description": "The result of the operation.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "iv": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Initialization vector for symmetric algorithms.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "tag": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Authentication tag for authenticated encryption algorithms.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "aad": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Additional authenticated data.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  }
+}

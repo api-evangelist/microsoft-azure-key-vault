@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyOperationsParameters",
+  "title": "KeyOperationsParameters",
+  "type": "object",
+  "description": "The key operations parameters.",
+  "required": [
+    "alg",
+    "value"
+  ],
+  "properties": {
+    "alg": {
+      "type": "string",
+      "description": "Algorithm identifier.",
+      "enum": [
+        "RSA-OAEP",
+        "RSA-OAEP-256",
+        "RSA1_5",
+        "A128GCM",
+        "A192GCM",
+        "A256GCM",
+        "A128KW",
+        "A192KW",
+        "A256KW",
+        "A128CBC",
+        "A192CBC",
+        "A256CBC",
+        "A128CBCPAD",
+        "A192CBCPAD",
+        "A256CBCPAD"
+      ],
+      "example": "RSA-OAEP"
+    },
+    "value": {
+      "type": "string",
+      "format": "base64url",
+      "description": "The value to operate on.",
+      "example": "example_value"
+    },
+    "iv": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Initialization vector for symmetric algorithms.",
+      "example": "example_value"
+    },
+    "aad": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Additional data to authenticate but not encrypt/decrypt.",
+      "example": "example_value"
+    },
+    "tag": {
+      "type": "string",
+      "format": "base64url",
+      "description": "The tag to verify when performing decryption with an authenticated algorithm.",
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeletedKeyBundle",
+  "title": "DeletedKeyBundle",
+  "type": "object",
+  "description": "A deleted key bundle consisting of a WebKey plus its attributes.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/KeyBundle"
+    }
+  ],
+  "properties": {
+    "recoveryId": {
+      "type": "string",
+      "description": "The url of the recovery object, used to identify and recover the deleted key.",
+      "example": "500123"
+    },
+    "scheduledPurgeDate": {
+      "type": "integer",
+      "format": "unixtime",
+      "description": "The time when the key is scheduled to be purged, in UTC.",
+      "readOnly": true,
+      "example": 10
+    },
+    "deletedDate": {
+      "type": "integer",
+      "format": "unixtime",
+      "description": "The time when the key was deleted, in UTC.",
+      "readOnly": true,
+      "example": 10
+    }
+  }
+}

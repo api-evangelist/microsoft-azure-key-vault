@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertificateBundle",
+  "title": "CertificateBundle",
+  "type": "object",
+  "description": "A certificate bundle consists of a certificate (X509) plus its attributes.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The certificate id.",
+      "example": "abc123"
+    },
+    "kid": {
+      "type": "string",
+      "description": "The key id.",
+      "example": "500123"
+    },
+    "sid": {
+      "type": "string",
+      "description": "The secret id.",
+      "example": "500123"
+    },
+    "x5t": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Thumbprint of the certificate.",
+      "example": "example_value"
+    },
+    "cer": {
+      "type": "string",
+      "format": "byte",
+      "description": "CER contents of x509 certificate.",
+      "example": "example_value"
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The content type of the secret.",
+      "example": "example_value"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/CertificateAttributes"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Application specific metadata in the form of key-value pairs.",
+      "example": "example_value"
+    },
+    "policy": {
+      "$ref": "#/components/schemas/CertificatePolicy"
+    }
+  }
+}

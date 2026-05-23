@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyCreateParameters",
+  "title": "KeyCreateParameters",
+  "type": "object",
+  "description": "The key create parameters.",
+  "required": [
+    "kty"
+  ],
+  "properties": {
+    "kty": {
+      "$ref": "#/components/schemas/JsonWebKeyType"
+    },
+    "key_size": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The key size in bits. For example: 2048, 3072, or 4096 for RSA.",
+      "example": 10
+    },
+    "public_exponent": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The public exponent for a RSA key.",
+      "example": 10
+    },
+    "key_ops": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JsonWebKeyOperation"
+      },
+      "description": "JSON web key operations.",
+      "example": []
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/KeyAttributes"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Application specific metadata in the form of key-value pairs.",
+      "example": "example_value"
+    },
+    "crv": {
+      "$ref": "#/components/schemas/JsonWebKeyCurveName"
+    },
+    "release_policy": {
+      "$ref": "#/components/schemas/KeyReleasePolicy"
+    }
+  }
+}

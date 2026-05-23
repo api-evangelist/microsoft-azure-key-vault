@@ -1,0 +1,12 @@
+name: Azure Key Vault Domain Vocabulary
+provider: Azure Key Vault
+providerId: microsoft-azure-key-vault
+description: Tag-derived vocabulary for the Azure Key Vault API surface; sourced from openapi/ tags.
+terms:
+- term: Certificates
+  description: Operations for creating, importing, managing, and renewing certificates including lifecycle management and
+    certificate authority integration.
+- term: Keys
+  description: Operations for creating, importing, managing, and performing cryptographic operations with keys.
+- term: Secrets
+  description: Operations for securely storing and managing secrets such as passwords, connection strings, and API keys.

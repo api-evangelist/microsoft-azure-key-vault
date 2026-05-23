@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyItem",
+  "title": "KeyItem",
+  "type": "object",
+  "description": "The key item containing key metadata.",
+  "properties": {
+    "kid": {
+      "type": "string",
+      "description": "Key identifier.",
+      "example": "500123"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/KeyAttributes"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Application specific metadata in the form of key-value pairs.",
+      "example": "example_value"
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "True if the key's lifetime is managed by key vault.",
+      "readOnly": true,
+      "example": true
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyBundle",
+  "title": "KeyBundle",
+  "type": "object",
+  "description": "A KeyBundle consisting of a WebKey plus its attributes.",
+  "properties": {
+    "key": {
+      "$ref": "#/components/schemas/JsonWebKey"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/KeyAttributes"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Application specific metadata in the form of key-value pairs.",
+      "example": "example_value"
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "True if the key's lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.",
+      "readOnly": true,
+      "example": true
+    },
+    "release_policy": {
+      "$ref": "#/components/schemas/KeyReleasePolicy"
+    }
+  }
+}

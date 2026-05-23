@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertificateItem",
+  "title": "CertificateItem",
+  "type": "object",
+  "description": "The certificate item containing certificate metadata.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Certificate identifier.",
+      "example": "abc123"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/CertificateAttributes"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Application specific metadata in the form of key-value pairs.",
+      "example": "example_value"
+    },
+    "x5t": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Thumbprint of the certificate.",
+      "example": "example_value"
+    },
+    "subject": {
+      "type": "string",
+      "description": "The subject name of the certificate.",
+      "example": "example_value"
+    }
+  }
+}

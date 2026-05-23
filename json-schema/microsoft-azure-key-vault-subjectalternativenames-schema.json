@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubjectAlternativeNames",
+  "title": "SubjectAlternativeNames",
+  "type": "object",
+  "description": "The Subject Alternative Names of a X509 object.",
+  "properties": {
+    "emails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Email addresses.",
+      "example": "user@example.com"
+    },
+    "dns_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Domain names.",
+      "example": []
+    },
+    "upns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "User Principal Names.",
+      "example": []
+    },
+    "uris": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Uniform Resource Identifiers.",
+      "example": []
+    },
+    "ipAddresses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IP addresses; supports IPv4 and IPv6.",
+      "example": []
+    }
+  }
+}

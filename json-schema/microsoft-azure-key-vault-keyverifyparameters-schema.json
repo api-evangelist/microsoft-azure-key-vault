@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyVerifyParameters",
+  "title": "KeyVerifyParameters",
+  "type": "object",
+  "description": "The key verify parameters.",
+  "required": [
+    "alg",
+    "digest",
+    "value"
+  ],
+  "properties": {
+    "alg": {
+      "type": "string",
+      "description": "The signing/verification algorithm identifier.",
+      "enum": [
+        "PS256",
+        "PS384",
+        "PS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "RSNULL",
+        "ES256",
+        "ES384",
+        "ES512",
+        "ES256K"
+      ],
+      "example": "PS256"
+    },
+    "digest": {
+      "type": "string",
+      "format": "base64url",
+      "description": "The digest used for signing.",
+      "example": "example_value"
+    },
+    "value": {
+      "type": "string",
+      "format": "base64url",
+      "description": "The signature to verify.",
+      "example": "example_value"
+    }
+  }
+}

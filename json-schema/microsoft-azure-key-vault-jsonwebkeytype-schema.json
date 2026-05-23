@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JsonWebKeyType",
+  "title": "JsonWebKeyType",
+  "type": "string",
+  "description": "JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.",
+  "enum": [
+    "EC",
+    "EC-HSM",
+    "RSA",
+    "RSA-HSM",
+    "oct",
+    "oct-HSM"
+  ]
+}

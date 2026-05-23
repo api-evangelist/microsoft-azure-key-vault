@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LifetimeAction",
+  "title": "LifetimeAction",
+  "type": "object",
+  "description": "Action and its trigger that will be performed by Key Vault over the lifetime of a certificate.",
+  "properties": {
+    "trigger": {
+      "type": "object",
+      "description": "The condition that will execute the action.",
+      "properties": {
+        "lifetime_percentage": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Percentage of lifetime at which to trigger."
+        },
+        "days_before_expiry": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Days before expiry to attempt renewal."
+        }
+      },
+      "example": "example_value"
+    },
+    "action": {
+      "type": "object",
+      "description": "The action that will be executed.",
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "enum": [
+            "EmailContacts",
+            "AutoRenew"
+          ],
+          "description": "The type of the action."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

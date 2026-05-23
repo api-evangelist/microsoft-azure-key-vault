@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeyVaultError",
+  "title": "KeyVaultError",
+  "type": "object",
+  "description": "The key vault error exception.",
+  "properties": {
+    "error": {
+      "$ref": "#/components/schemas/Error"
+    }
+  },
+  "readOnly": true
+}

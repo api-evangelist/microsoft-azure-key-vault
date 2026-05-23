@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertificateImportParameters",
+  "title": "CertificateImportParameters",
+  "type": "object",
+  "description": "The certificate import parameters.",
+  "required": [
+    "value"
+  ],
+  "properties": {
+    "value": {
+      "type": "string",
+      "description": "Base64 encoded representation of the certificate object to import. This certificate needs to contain the private key.",
+      "example": "example_value"
+    },
+    "pwd": {
+      "type": "string",
+      "description": "If the private key in base64EncodedCertificate is encrypted, the password used for encryption.",
+      "example": "example_value"
+    },
+    "policy": {
+      "$ref": "#/components/schemas/CertificatePolicy"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/CertificateAttributes"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Application specific metadata in the form of key-value pairs.",
+      "example": "example_value"
+    }
+  }
+}

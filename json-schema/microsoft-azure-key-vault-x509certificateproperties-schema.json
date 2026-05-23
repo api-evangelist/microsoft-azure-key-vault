@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/X509CertificateProperties",
+  "title": "X509CertificateProperties",
+  "type": "object",
+  "description": "Properties of the X509 component of a certificate.",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "description": "The subject name. Should be a valid X509 distinguished name.",
+      "example": "example_value"
+    },
+    "ekus": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The enhanced key usage.",
+      "example": []
+    },
+    "sans": {
+      "$ref": "#/components/schemas/SubjectAlternativeNames"
+    },
+    "key_usage": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "digitalSignature",
+          "nonRepudiation",
+          "keyEncipherment",
+          "dataEncipherment",
+          "keyAgreement",
+          "keyCertSign",
+          "cRLSign",
+          "encipherOnly",
+          "decipherOnly"
+        ]
+      },
+      "description": "Defines how the certificate's key may be used.",
+      "example": []
+    },
+    "validity_months": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0,
+      "description": "The duration that the certificate is valid in months.",
+      "example": 10
+    }
+  }
+}

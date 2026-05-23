@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertificatePolicy",
+  "title": "CertificatePolicy",
+  "type": "object",
+  "description": "Management policy for a certificate.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The certificate id.",
+      "readOnly": true,
+      "example": "abc123"
+    },
+    "key_props": {
+      "$ref": "#/components/schemas/KeyProperties"
+    },
+    "secret_props": {
+      "$ref": "#/components/schemas/SecretProperties"
+    },
+    "x509_props": {
+      "$ref": "#/components/schemas/X509CertificateProperties"
+    },
+    "lifetime_actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LifetimeAction"
+      },
+      "description": "Actions that will be performed by Key Vault over the lifetime of a certificate.",
+      "example": []
+    },
+    "issuer": {
+      "$ref": "#/components/schemas/IssuerParameters"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/CertificateAttributes"
+    }
+  }
+}

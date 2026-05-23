@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertificateListResult",
+  "title": "CertificateListResult",
+  "type": "object",
+  "description": "The certificate list result.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CertificateItem"
+      },
+      "description": "A list of certificates.",
+      "readOnly": true,
+      "example": []
+    },
+    "nextLink": {
+      "type": "string",
+      "description": "The URL to get the next set of certificates.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JsonWebKey",
+  "title": "JsonWebKey",
+  "type": "object",
+  "description": "As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18.",
+  "properties": {
+    "kid": {
+      "type": "string",
+      "description": "Key identifier.",
+      "example": "500123"
+    },
+    "kty": {
+      "$ref": "#/components/schemas/JsonWebKeyType"
+    },
+    "key_ops": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Supported key operations.",
+      "example": []
+    },
+    "n": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA modulus.",
+      "example": "example_value"
+    },
+    "e": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA public exponent.",
+      "example": "example_value"
+    },
+    "d": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA private exponent, or the D component of an EC private key.",
+      "example": "example_value"
+    },
+    "dp": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA private key parameter.",
+      "example": "example_value"
+    },
+    "dq": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA private key parameter.",
+      "example": "example_value"
+    },
+    "qi": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA private key parameter.",
+      "example": "example_value"
+    },
+    "p": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA secret prime.",
+      "example": "example_value"
+    },
+    "q": {
+      "type": "string",
+      "format": "base64url",
+      "description": "RSA secret prime, with p < q.",
+      "example": "example_value"
+    },
+    "k": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Symmetric key.",
+      "example": "example_value"
+    },
+    "key_hsm": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Protected Key, used with Bring Your Own Key.",
+      "example": "example_value"
+    },
+    "crv": {
+      "$ref": "#/components/schemas/JsonWebKeyCurveName"
+    },
+    "x": {
+      "type": "string",
+      "format": "base64url",
+      "description": "X component of an EC public key.",
+      "example": "example_value"
+    },
+    "y": {
+      "type": "string",
+      "format": "base64url",
+      "description": "Y component of an EC public key.",
+      "example": "example_value"
+    }
+  }
+}
