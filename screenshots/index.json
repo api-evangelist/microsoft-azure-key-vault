@@ -1,10 +1,10 @@
 [
   {
-    "repo": "azure-key-vault",
-    "captured_at": "2026-06-20T172900",
+    "repo": "microsoft-azure-key-vault",
+    "captured_at": "2026-06-20T185418",
     "source_url": "https://portal.azure.com/",
     "source_type": "Portal",
-    "file": "azure-key-vault-2026-06-20T172900.png",
-    "bytes": 232226
+    "file": "microsoft-azure-key-vault-2026-06-20T185418.png",
+    "bytes": 232235
   }
 ]
