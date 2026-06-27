@@ -162,16 +162,16 @@ apis:
         url: json-ld/azure-key-vault-context.jsonld
       - type: JSONLD
         url: json-ld/azure-key-vault-data-plane-context.jsonld
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/security.keyvault.keys-readme
         title: .NET SDK
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/python/api/overview/azure/keyvault-keys-readme
         title: Python SDK
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/java/api/overview/azure/security-keyvault-keys-readme
         title: Java SDK
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/javascript/api/overview/azure/keyvault-keys-readme
         title: JavaScript SDK
     contact:
