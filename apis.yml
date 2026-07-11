@@ -248,6 +248,10 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: DomainSecurity
+    url: security/microsoft-azure-key-vault-domain-security.yml
+  - type: Authentication
+    url: authentication/microsoft-azure-key-vault-authentication.yml
   - type: OAuthScopes
     url: scopes/microsoft-azure-key-vault-scopes.yml
   - type: StatusPage

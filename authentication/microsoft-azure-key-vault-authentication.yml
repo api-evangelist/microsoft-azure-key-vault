@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/azure-key-vault-data-plane-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - implicit
+schemes:
+- name: OAuth2Auth
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes: 1
+  description: Azure Active Directory OAuth2 authentication. Requires an access token scoped
+    to the Key Vault resource.
+  sources:
+  - openapi/azure-key-vault-data-plane-openapi.yml
