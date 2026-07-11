@@ -248,6 +248,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: OAuthScopes
+    url: scopes/microsoft-azure-key-vault-scopes.yml
   - type: StatusPage
     url: https://status.azure.com/
   - type: Blog
