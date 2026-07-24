@@ -1,0 +1,914 @@
+openapi: 3.1.0
+info:
+  title: Azure Key Vault Data Plane Certificates Keys API
+  description: The Azure Key Vault data plane API for performing operations on keys, secrets, and certificates within a specific Key Vault instance. This API enables cryptographic operations, secret management, and certificate lifecycle management. All operations require OAuth 2.0 authentication via Azure Active Directory.
+  version: '7.4'
+  contact:
+    name: Microsoft Azure Support
+    url: https://azure.microsoft.com/en-us/support/
+  license:
+    name: Microsoft API License
+    url: https://learn.microsoft.com/en-us/legal/microsoft-apis/terms-of-use
+  x-apisguru-categories:
+  - security
+  - cloud
+  x-logo:
+    url: https://azure.microsoft.com/svghandler/key-vault/
+servers:
+- url: https://{vaultName}.vault.azure.net
+  description: Azure Key Vault data plane endpoint
+  variables:
+    vaultName:
+      description: The name of the Key Vault instance
+      default: myvault
+security:
+- OAuth2Auth: []
+tags:
+- name: Keys
+  description: Operations for creating, importing, managing, and performing cryptographic operations with keys.
+paths:
+  /keys/{key-name}/create:
+    post:
+      operationId: Keys_CreateKey
+      summary: Azure Key Vault Create Key
+      description: Creates a new key, stores it, then returns key parameters and attributes to the client. If the named key already exists, Azure Key Vault creates a new version of the key. Requires the keys/create permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyCreateParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}/{key-version}:
+    get:
+      operationId: Keys_GetKey
+      summary: Azure Key Vault Get Key
+      description: Gets the public part of a stored key. The get key operation is applicable to all key types. If the requested key is symmetric, then no key material is released in the response. Requires the keys/get permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: Keys_UpdateKey
+      summary: Azure Key Vault Update Key
+      description: The update key operation changes specified attributes of a stored key and can be applied to any key type and key version stored in Azure Key Vault. Requires the keys/update permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyUpdateParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}:
+    delete:
+      operationId: Keys_DeleteKey
+      summary: Azure Key Vault Delete Key
+      description: Deletes a key of any type from storage in Azure Key Vault. Requires the keys/delete permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedKeyBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys:
+    get:
+      operationId: Keys_GetKeys
+      summary: Azure Key Vault List Keys
+      description: Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The list operation is applicable to all key types. Requires the keys/list permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/MaxResultsParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyListResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}/{key-version}/encrypt:
+    post:
+      operationId: Keys_Encrypt
+      summary: Azure Key Vault Encrypt
+      description: Encrypts an arbitrary sequence of bytes using an encryption key that is stored in a Key Vault. Requires the keys/encrypt permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyOperationsParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyOperationResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}/{key-version}/decrypt:
+    post:
+      operationId: Keys_Decrypt
+      summary: Azure Key Vault Decrypt
+      description: Decrypts a single block of encrypted data using the specified encryption key. Requires the keys/decrypt permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyOperationsParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyOperationResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}/{key-version}/sign:
+    post:
+      operationId: Keys_Sign
+      summary: Azure Key Vault Sign
+      description: Creates a signature from a digest using the specified key. Requires the keys/sign permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeySignParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyOperationResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}/{key-version}/verify:
+    post:
+      operationId: Keys_Verify
+      summary: Azure Key Vault Verify
+      description: Verifies a signature using a specified key. Requires the keys/verify permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyVerifyParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVerifyResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}/{key-version}/wrapkey:
+    post:
+      operationId: Keys_WrapKey
+      summary: Azure Key Vault Wrap Key
+      description: Wraps a symmetric key using a specified key. Requires the keys/wrapKey permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyOperationsParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyOperationResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /keys/{key-name}/{key-version}/unwrapkey:
+    post:
+      operationId: Keys_UnwrapKey
+      summary: Azure Key Vault Unwrap Key
+      description: Unwraps a symmetric key using the specified key that was initially used for wrapping that key. Requires the keys/unwrapKey permission.
+      tags:
+      - Keys
+      parameters:
+      - $ref: '#/components/parameters/KeyNameParameter'
+      - $ref: '#/components/parameters/KeyVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyOperationsParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyOperationResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    KeyBundle:
+      type: object
+      description: A KeyBundle consisting of a WebKey plus its attributes.
+      properties:
+        key:
+          $ref: '#/components/schemas/JsonWebKey'
+        attributes:
+          $ref: '#/components/schemas/KeyAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        managed:
+          type: boolean
+          description: True if the key's lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.
+          readOnly: true
+          example: true
+        release_policy:
+          $ref: '#/components/schemas/KeyReleasePolicy'
+    KeyVerifyParameters:
+      type: object
+      description: The key verify parameters.
+      required:
+      - alg
+      - digest
+      - value
+      properties:
+        alg:
+          type: string
+          description: The signing/verification algorithm identifier.
+          enum:
+          - PS256
+          - PS384
+          - PS512
+          - RS256
+          - RS384
+          - RS512
+          - RSNULL
+          - ES256
+          - ES384
+          - ES512
+          - ES256K
+          example: PS256
+        digest:
+          type: string
+          format: base64url
+          description: The digest used for signing.
+          example: example_value
+        value:
+          type: string
+          format: base64url
+          description: The signature to verify.
+          example: example_value
+    KeySignParameters:
+      type: object
+      description: The key sign parameters.
+      required:
+      - alg
+      - value
+      properties:
+        alg:
+          type: string
+          description: The signing/verification algorithm identifier.
+          enum:
+          - PS256
+          - PS384
+          - PS512
+          - RS256
+          - RS384
+          - RS512
+          - RSNULL
+          - ES256
+          - ES384
+          - ES512
+          - ES256K
+          example: PS256
+        value:
+          type: string
+          format: base64url
+          description: The digest value to sign.
+          example: example_value
+    KeyOperationResult:
+      type: object
+      description: The key operation result.
+      properties:
+        kid:
+          type: string
+          description: Key identifier.
+          readOnly: true
+          example: '500123'
+        value:
+          type: string
+          format: base64url
+          description: The result of the operation.
+          readOnly: true
+          example: example_value
+        iv:
+          type: string
+          format: base64url
+          description: Initialization vector for symmetric algorithms.
+          readOnly: true
+          example: example_value
+        tag:
+          type: string
+          format: base64url
+          description: Authentication tag for authenticated encryption algorithms.
+          readOnly: true
+          example: example_value
+        aad:
+          type: string
+          format: base64url
+          description: Additional authenticated data.
+          readOnly: true
+          example: example_value
+    KeyReleasePolicy:
+      type: object
+      description: The policy rules under which the key can be exported.
+      properties:
+        contentType:
+          type: string
+          description: Content type and version of key release policy.
+          default: application/json; charset=utf-8
+          example: example_value
+        data:
+          type: string
+          format: base64url
+          description: Blob encoding the policy rules under which the key can be released.
+          example: example_value
+        immutable:
+          type: boolean
+          description: Defines the mutability state of the policy. Once marked immutable, this flag cannot be reset and the policy cannot be changed under any circumstances.
+          example: true
+    JsonWebKeyOperation:
+      type: string
+      description: JSON web key operations.
+      enum:
+      - encrypt
+      - decrypt
+      - sign
+      - verify
+      - wrapKey
+      - unwrapKey
+      - import
+      - export
+    DeletionRecoveryLevel:
+      type: string
+      description: Reflects the deletion recovery level currently in effect for objects in the current vault.
+      enum:
+      - Purgeable
+      - Recoverable+Purgeable
+      - Recoverable
+      - Recoverable+ProtectedSubscription
+      - CustomizedRecoverable+Purgeable
+      - CustomizedRecoverable
+      - CustomizedRecoverable+ProtectedSubscription
+    KeyAttributes:
+      type: object
+      description: The attributes of a key managed by the key vault service.
+      properties:
+        enabled:
+          type: boolean
+          description: Determines whether the object is enabled.
+          example: true
+        nbf:
+          type: integer
+          format: unixtime
+          description: Not before date in UTC.
+          example: 10
+        exp:
+          type: integer
+          format: unixtime
+          description: Expiry date in UTC.
+          example: 10
+        created:
+          type: integer
+          format: unixtime
+          description: Creation time in UTC.
+          readOnly: true
+          example: 10
+        updated:
+          type: integer
+          format: unixtime
+          description: Last updated time in UTC.
+          readOnly: true
+          example: 10
+        recoveryLevel:
+          $ref: '#/components/schemas/DeletionRecoveryLevel'
+        recoverableDays:
+          type: integer
+          format: int32
+          description: softDelete data retention days. Value should be >=7 and <=90 when softDelete enabled, otherwise 0.
+          readOnly: true
+          example: 10
+        exportable:
+          type: boolean
+          description: Indicates if the private key can be exported.
+          example: true
+        hsmPlatform:
+          type: string
+          description: The underlying HSM Platform.
+          readOnly: true
+          example: example_value
+    KeyOperationsParameters:
+      type: object
+      description: The key operations parameters.
+      required:
+      - alg
+      - value
+      properties:
+        alg:
+          type: string
+          description: Algorithm identifier.
+          enum:
+          - RSA-OAEP
+          - RSA-OAEP-256
+          - RSA1_5
+          - A128GCM
+          - A192GCM
+          - A256GCM
+          - A128KW
+          - A192KW
+          - A256KW
+          - A128CBC
+          - A192CBC
+          - A256CBC
+          - A128CBCPAD
+          - A192CBCPAD
+          - A256CBCPAD
+          example: RSA-OAEP
+        value:
+          type: string
+          format: base64url
+          description: The value to operate on.
+          example: example_value
+        iv:
+          type: string
+          format: base64url
+          description: Initialization vector for symmetric algorithms.
+          example: example_value
+        aad:
+          type: string
+          format: base64url
+          description: Additional data to authenticate but not encrypt/decrypt.
+          example: example_value
+        tag:
+          type: string
+          format: base64url
+          description: The tag to verify when performing decryption with an authenticated algorithm.
+          example: example_value
+    KeyItem:
+      type: object
+      description: The key item containing key metadata.
+      properties:
+        kid:
+          type: string
+          description: Key identifier.
+          example: '500123'
+        attributes:
+          $ref: '#/components/schemas/KeyAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        managed:
+          type: boolean
+          description: True if the key's lifetime is managed by key vault.
+          readOnly: true
+          example: true
+    KeyListResult:
+      type: object
+      description: The key list result.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyItem'
+          description: A list of keys.
+          readOnly: true
+          example: []
+        nextLink:
+          type: string
+          description: The URL to get the next set of keys.
+          readOnly: true
+          example: example_value
+    KeyVerifyResult:
+      type: object
+      description: The key verify result.
+      properties:
+        value:
+          type: boolean
+          description: True if the signature is verified, otherwise false.
+          readOnly: true
+          example: true
+    JsonWebKeyType:
+      type: string
+      description: JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.
+      enum:
+      - EC
+      - EC-HSM
+      - RSA
+      - RSA-HSM
+      - oct
+      - oct-HSM
+    JsonWebKeyCurveName:
+      type: string
+      description: Elliptic curve name.
+      enum:
+      - P-256
+      - P-384
+      - P-521
+      - P-256K
+    DeletedKeyBundle:
+      type: object
+      description: A deleted key bundle consisting of a WebKey plus its attributes.
+      allOf:
+      - $ref: '#/components/schemas/KeyBundle'
+      properties:
+        recoveryId:
+          type: string
+          description: The url of the recovery object, used to identify and recover the deleted key.
+          example: '500123'
+        scheduledPurgeDate:
+          type: integer
+          format: unixtime
+          description: The time when the key is scheduled to be purged, in UTC.
+          readOnly: true
+          example: 10
+        deletedDate:
+          type: integer
+          format: unixtime
+          description: The time when the key was deleted, in UTC.
+          readOnly: true
+          example: 10
+    KeyUpdateParameters:
+      type: object
+      description: The key update parameters.
+      properties:
+        key_ops:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonWebKeyOperation'
+          description: JSON web key operations.
+          example: []
+        attributes:
+          $ref: '#/components/schemas/KeyAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        release_policy:
+          $ref: '#/components/schemas/KeyReleasePolicy'
+    JsonWebKey:
+      type: object
+      description: As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18.
+      properties:
+        kid:
+          type: string
+          description: Key identifier.
+          example: '500123'
+        kty:
+          $ref: '#/components/schemas/JsonWebKeyType'
+        key_ops:
+          type: array
+          items:
+            type: string
+          description: Supported key operations.
+          example: []
+        n:
+          type: string
+          format: base64url
+          description: RSA modulus.
+          example: example_value
+        e:
+          type: string
+          format: base64url
+          description: RSA public exponent.
+          example: example_value
+        d:
+          type: string
+          format: base64url
+          description: RSA private exponent, or the D component of an EC private key.
+          example: example_value
+        dp:
+          type: string
+          format: base64url
+          description: RSA private key parameter.
+          example: example_value
+        dq:
+          type: string
+          format: base64url
+          description: RSA private key parameter.
+          example: example_value
+        qi:
+          type: string
+          format: base64url
+          description: RSA private key parameter.
+          example: example_value
+        p:
+          type: string
+          format: base64url
+          description: RSA secret prime.
+          example: example_value
+        q:
+          type: string
+          format: base64url
+          description: RSA secret prime, with p < q.
+          example: example_value
+        k:
+          type: string
+          format: base64url
+          description: Symmetric key.
+          example: example_value
+        key_hsm:
+          type: string
+          format: base64url
+          description: Protected Key, used with Bring Your Own Key.
+          example: example_value
+        crv:
+          $ref: '#/components/schemas/JsonWebKeyCurveName'
+        x:
+          type: string
+          format: base64url
+          description: X component of an EC public key.
+          example: example_value
+        y:
+          type: string
+          format: base64url
+          description: Y component of an EC public key.
+          example: example_value
+    KeyCreateParameters:
+      type: object
+      description: The key create parameters.
+      required:
+      - kty
+      properties:
+        kty:
+          $ref: '#/components/schemas/JsonWebKeyType'
+        key_size:
+          type: integer
+          format: int32
+          description: 'The key size in bits. For example: 2048, 3072, or 4096 for RSA.'
+          example: 10
+        public_exponent:
+          type: integer
+          format: int32
+          description: The public exponent for a RSA key.
+          example: 10
+        key_ops:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonWebKeyOperation'
+          description: JSON web key operations.
+          example: []
+        attributes:
+          $ref: '#/components/schemas/KeyAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        crv:
+          $ref: '#/components/schemas/JsonWebKeyCurveName'
+        release_policy:
+          $ref: '#/components/schemas/KeyReleasePolicy'
+    Error:
+      type: object
+      description: The key vault server error.
+      properties:
+        code:
+          type: string
+          description: The error code.
+          readOnly: true
+          example: example_value
+        message:
+          type: string
+          description: The error message.
+          readOnly: true
+          example: example_value
+        innererror:
+          $ref: '#/components/schemas/Error'
+      readOnly: true
+    KeyVaultError:
+      type: object
+      description: The key vault error exception.
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+      readOnly: true
+  parameters:
+    KeyVersionParameter:
+      name: key-version
+      in: path
+      required: true
+      description: The version of the key. This URI fragment is optional. If not specified, the latest version of the key is returned.
+      schema:
+        type: string
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: The API version to use for this operation.
+      schema:
+        type: string
+        minLength: 1
+        default: '7.4'
+    MaxResultsParameter:
+      name: maxresults
+      in: query
+      required: false
+      description: Maximum number of results to return in a page. If not specified, the service will return up to 25 results.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 25
+    KeyNameParameter:
+      name: key-name
+      in: path
+      required: true
+      description: The name of the key.
+      schema:
+        type: string
+        pattern: ^[0-9a-zA-Z-]+$
+  securitySchemes:
+    OAuth2Auth:
+      type: oauth2
+      description: Azure Active Directory OAuth2 authentication. Requires an access token scoped to the Key Vault resource.
+      flows:
+        implicit:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+          scopes:
+            https://vault.azure.net/.default: Access Azure Key Vault
+externalDocs:
+  description: Azure Key Vault REST API Reference
+  url: https://learn.microsoft.com/en-us/rest/api/keyvault/

@@ -1,0 +1,822 @@
+openapi: 3.1.0
+info:
+  title: Azure Key Vault Data Plane Certificates API
+  description: The Azure Key Vault data plane API for performing operations on keys, secrets, and certificates within a specific Key Vault instance. This API enables cryptographic operations, secret management, and certificate lifecycle management. All operations require OAuth 2.0 authentication via Azure Active Directory.
+  version: '7.4'
+  contact:
+    name: Microsoft Azure Support
+    url: https://azure.microsoft.com/en-us/support/
+  license:
+    name: Microsoft API License
+    url: https://learn.microsoft.com/en-us/legal/microsoft-apis/terms-of-use
+  x-apisguru-categories:
+  - security
+  - cloud
+  x-logo:
+    url: https://azure.microsoft.com/svghandler/key-vault/
+servers:
+- url: https://{vaultName}.vault.azure.net
+  description: Azure Key Vault data plane endpoint
+  variables:
+    vaultName:
+      description: The name of the Key Vault instance
+      default: myvault
+security:
+- OAuth2Auth: []
+tags:
+- name: Certificates
+  description: Operations for creating, importing, managing, and renewing certificates including lifecycle management and certificate authority integration.
+paths:
+  /certificates/{certificate-name}/create:
+    post:
+      operationId: Certificates_CreateCertificate
+      summary: Azure Key Vault Create Certificate
+      description: Creates a new certificate. If this is the first version, the certificate resource is created. Requires the certificates/create permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateCreateParameters'
+      responses:
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateOperation'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /certificates/{certificate-name}/{certificate-version}:
+    get:
+      operationId: Certificates_GetCertificate
+      summary: Azure Key Vault Get Certificate
+      description: Gets information about a specific certificate. Requires the certificates/get permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/CertificateVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: Certificates_UpdateCertificate
+      summary: Azure Key Vault Update Certificate
+      description: Applies the specified update on the given certificate. Requires the certificates/update permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/CertificateVersionParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateUpdateParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /certificates/{certificate-name}:
+    delete:
+      operationId: Certificates_DeleteCertificate
+      summary: Azure Key Vault Delete Certificate
+      description: Deletes all versions of a certificate object along with its associated policy. Requires the certificates/delete permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCertificateBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /certificates:
+    get:
+      operationId: Certificates_GetCertificates
+      summary: Azure Key Vault List Certificates
+      description: List certificates in a specified key vault. Requires the certificates/list permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - $ref: '#/components/parameters/MaxResultsParameter'
+      - name: includePending
+        in: query
+        description: Specifies whether to include certificates which are not completely provisioned.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateListResult'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /certificates/{certificate-name}/import:
+    post:
+      operationId: Certificates_ImportCertificate
+      summary: Azure Key Vault Import Certificate
+      description: Imports an existing valid certificate, containing a private key, into Azure Key Vault. The certificate to be imported can be in either PFX or PEM format. Requires the certificates/import permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateImportParameters'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateBundle'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /certificates/{certificate-name}/policy:
+    get:
+      operationId: Certificates_GetCertificatePolicy
+      summary: Azure Key Vault Get Certificate Policy
+      description: Gets the policy for a certificate. Requires the certificates/get permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificatePolicy'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: Certificates_UpdateCertificatePolicy
+      summary: Azure Key Vault Update Certificate Policy
+      description: Set specified members in the certificate policy. Requires the certificates/update permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificatePolicy'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificatePolicy'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /certificates/{certificate-name}/pending:
+    get:
+      operationId: Certificates_GetCertificateOperation
+      summary: Azure Key Vault Get Certificate Operation
+      description: Gets the creation operation associated with a specified certificate. Requires the certificates/get permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateOperation'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: Certificates_DeleteCertificateOperation
+      summary: Azure Key Vault Delete Certificate Operation
+      description: Deletes the creation operation for a specific certificate. Requires the certificates/update permission.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/CertificateNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateOperation'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyVaultError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CertificateItem:
+      type: object
+      description: The certificate item containing certificate metadata.
+      properties:
+        id:
+          type: string
+          description: Certificate identifier.
+          example: abc123
+        attributes:
+          $ref: '#/components/schemas/CertificateAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        x5t:
+          type: string
+          format: base64url
+          description: Thumbprint of the certificate.
+          example: example_value
+        subject:
+          type: string
+          description: The subject name of the certificate.
+          example: example_value
+    KeyProperties:
+      type: object
+      description: Properties of the key pair backing a certificate.
+      properties:
+        exportable:
+          type: boolean
+          description: Indicates if the private key can be exported.
+          example: true
+        kty:
+          $ref: '#/components/schemas/JsonWebKeyType'
+        key_size:
+          type: integer
+          format: int32
+          description: 'The key size in bits. For example: 2048, 3072, or 4096 for RSA.'
+          example: 10
+        reuse_key:
+          type: boolean
+          description: Indicates if the same key pair will be used on certificate renewal.
+          example: true
+        crv:
+          $ref: '#/components/schemas/JsonWebKeyCurveName'
+    LifetimeAction:
+      type: object
+      description: Action and its trigger that will be performed by Key Vault over the lifetime of a certificate.
+      properties:
+        trigger:
+          type: object
+          description: The condition that will execute the action.
+          properties:
+            lifetime_percentage:
+              type: integer
+              format: int32
+              minimum: 1
+              maximum: 99
+              description: Percentage of lifetime at which to trigger.
+            days_before_expiry:
+              type: integer
+              format: int32
+              description: Days before expiry to attempt renewal.
+          example: example_value
+        action:
+          type: object
+          description: The action that will be executed.
+          properties:
+            action_type:
+              type: string
+              enum:
+              - EmailContacts
+              - AutoRenew
+              description: The type of the action.
+          example: example_value
+    SubjectAlternativeNames:
+      type: object
+      description: The Subject Alternative Names of a X509 object.
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+          description: Email addresses.
+          example: user@example.com
+        dns_names:
+          type: array
+          items:
+            type: string
+          description: Domain names.
+          example: []
+        upns:
+          type: array
+          items:
+            type: string
+          description: User Principal Names.
+          example: []
+        uris:
+          type: array
+          items:
+            type: string
+          description: Uniform Resource Identifiers.
+          example: []
+        ipAddresses:
+          type: array
+          items:
+            type: string
+          description: IP addresses; supports IPv4 and IPv6.
+          example: []
+    CertificateAttributes:
+      type: object
+      description: The certificate management attributes.
+      properties:
+        enabled:
+          type: boolean
+          description: Determines whether the object is enabled.
+          example: true
+        nbf:
+          type: integer
+          format: unixtime
+          description: Not before date in UTC.
+          example: 10
+        exp:
+          type: integer
+          format: unixtime
+          description: Expiry date in UTC.
+          example: 10
+        created:
+          type: integer
+          format: unixtime
+          description: Creation time in UTC.
+          readOnly: true
+          example: 10
+        updated:
+          type: integer
+          format: unixtime
+          description: Last updated time in UTC.
+          readOnly: true
+          example: 10
+        recoveryLevel:
+          $ref: '#/components/schemas/DeletionRecoveryLevel'
+        recoverableDays:
+          type: integer
+          format: int32
+          description: softDelete data retention days. Value should be >=7 and <=90 when softDelete enabled, otherwise 0.
+          readOnly: true
+          example: 10
+    CertificatePolicy:
+      type: object
+      description: Management policy for a certificate.
+      properties:
+        id:
+          type: string
+          description: The certificate id.
+          readOnly: true
+          example: abc123
+        key_props:
+          $ref: '#/components/schemas/KeyProperties'
+        secret_props:
+          $ref: '#/components/schemas/SecretProperties'
+        x509_props:
+          $ref: '#/components/schemas/X509CertificateProperties'
+        lifetime_actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LifetimeAction'
+          description: Actions that will be performed by Key Vault over the lifetime of a certificate.
+          example: []
+        issuer:
+          $ref: '#/components/schemas/IssuerParameters'
+        attributes:
+          $ref: '#/components/schemas/CertificateAttributes'
+    CertificateCreateParameters:
+      type: object
+      description: The certificate create parameters.
+      properties:
+        policy:
+          $ref: '#/components/schemas/CertificatePolicy'
+        attributes:
+          $ref: '#/components/schemas/CertificateAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+    CertificateUpdateParameters:
+      type: object
+      description: The certificate update parameters.
+      properties:
+        policy:
+          $ref: '#/components/schemas/CertificatePolicy'
+        attributes:
+          $ref: '#/components/schemas/CertificateAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+    DeletedCertificateBundle:
+      type: object
+      description: A deleted certificate bundle consisting of its previous id, attributes, tags, and deletion information.
+      allOf:
+      - $ref: '#/components/schemas/CertificateBundle'
+      properties:
+        recoveryId:
+          type: string
+          description: The url of the recovery object, used to identify and recover the deleted certificate.
+          example: '500123'
+        scheduledPurgeDate:
+          type: integer
+          format: unixtime
+          description: The time when the certificate is scheduled to be purged, in UTC.
+          readOnly: true
+          example: 10
+        deletedDate:
+          type: integer
+          format: unixtime
+          description: The time when the certificate was deleted, in UTC.
+          readOnly: true
+          example: 10
+    IssuerParameters:
+      type: object
+      description: Parameters for the issuer of the X509 component of a certificate.
+      properties:
+        name:
+          type: string
+          description: Name of the referenced issuer object or reserved names; for example, 'Self' or 'Unknown'.
+          example: Example Title
+        cty:
+          type: string
+          description: Certificate type as supported by the provider (optional); for example 'OV-SSL', 'EV-SSL'.
+          example: example_value
+        cert_transparency:
+          type: boolean
+          description: Indicates if the certificates generated under this policy should be published to certificate transparency logs.
+          example: true
+    CertificateOperation:
+      type: object
+      description: A certificate operation is returned in case of asynchronous requests.
+      properties:
+        id:
+          type: string
+          description: The certificate id.
+          readOnly: true
+          example: abc123
+        issuer:
+          $ref: '#/components/schemas/IssuerParameters'
+        csr:
+          type: string
+          format: byte
+          description: The certificate signing request (CSR) that is being used in the certificate operation.
+          example: example_value
+        cancellation_requested:
+          type: boolean
+          description: Indicates if cancellation was requested on the certificate operation.
+          example: true
+        status:
+          type: string
+          description: Status of the certificate operation.
+          example: example_value
+        status_details:
+          type: string
+          description: The status details of the certificate operation.
+          example: example_value
+        error:
+          $ref: '#/components/schemas/Error'
+        target:
+          type: string
+          description: Location which contains the result of the certificate operation.
+          example: example_value
+        request_id:
+          type: string
+          description: Identifier for the certificate operation.
+          example: '500123'
+    CertificateListResult:
+      type: object
+      description: The certificate list result.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertificateItem'
+          description: A list of certificates.
+          readOnly: true
+          example: []
+        nextLink:
+          type: string
+          description: The URL to get the next set of certificates.
+          readOnly: true
+          example: example_value
+    DeletionRecoveryLevel:
+      type: string
+      description: Reflects the deletion recovery level currently in effect for objects in the current vault.
+      enum:
+      - Purgeable
+      - Recoverable+Purgeable
+      - Recoverable
+      - Recoverable+ProtectedSubscription
+      - CustomizedRecoverable+Purgeable
+      - CustomizedRecoverable
+      - CustomizedRecoverable+ProtectedSubscription
+    CertificateBundle:
+      type: object
+      description: A certificate bundle consists of a certificate (X509) plus its attributes.
+      properties:
+        id:
+          type: string
+          description: The certificate id.
+          example: abc123
+        kid:
+          type: string
+          description: The key id.
+          example: '500123'
+        sid:
+          type: string
+          description: The secret id.
+          example: '500123'
+        x5t:
+          type: string
+          format: base64url
+          description: Thumbprint of the certificate.
+          example: example_value
+        cer:
+          type: string
+          format: byte
+          description: CER contents of x509 certificate.
+          example: example_value
+        contentType:
+          type: string
+          description: The content type of the secret.
+          example: example_value
+        attributes:
+          $ref: '#/components/schemas/CertificateAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        policy:
+          $ref: '#/components/schemas/CertificatePolicy'
+    JsonWebKeyType:
+      type: string
+      description: JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.
+      enum:
+      - EC
+      - EC-HSM
+      - RSA
+      - RSA-HSM
+      - oct
+      - oct-HSM
+    SecretProperties:
+      type: object
+      description: Properties of the secret backing a certificate.
+      properties:
+        contentType:
+          type: string
+          description: The media type (MIME type).
+          example: example_value
+    JsonWebKeyCurveName:
+      type: string
+      description: Elliptic curve name.
+      enum:
+      - P-256
+      - P-384
+      - P-521
+      - P-256K
+    CertificateImportParameters:
+      type: object
+      description: The certificate import parameters.
+      required:
+      - value
+      properties:
+        value:
+          type: string
+          description: Base64 encoded representation of the certificate object to import. This certificate needs to contain the private key.
+          example: example_value
+        pwd:
+          type: string
+          description: If the private key in base64EncodedCertificate is encrypted, the password used for encryption.
+          example: example_value
+        policy:
+          $ref: '#/components/schemas/CertificatePolicy'
+        attributes:
+          $ref: '#/components/schemas/CertificateAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+    X509CertificateProperties:
+      type: object
+      description: Properties of the X509 component of a certificate.
+      properties:
+        subject:
+          type: string
+          description: The subject name. Should be a valid X509 distinguished name.
+          example: example_value
+        ekus:
+          type: array
+          items:
+            type: string
+          description: The enhanced key usage.
+          example: []
+        sans:
+          $ref: '#/components/schemas/SubjectAlternativeNames'
+        key_usage:
+          type: array
+          items:
+            type: string
+            enum:
+            - digitalSignature
+            - nonRepudiation
+            - keyEncipherment
+            - dataEncipherment
+            - keyAgreement
+            - keyCertSign
+            - cRLSign
+            - encipherOnly
+            - decipherOnly
+          description: Defines how the certificate's key may be used.
+          example: []
+        validity_months:
+          type: integer
+          format: int32
+          minimum: 0
+          description: The duration that the certificate is valid in months.
+          example: 10
+    Error:
+      type: object
+      description: The key vault server error.
+      properties:
+        code:
+          type: string
+          description: The error code.
+          readOnly: true
+          example: example_value
+        message:
+          type: string
+          description: The error message.
+          readOnly: true
+          example: example_value
+        innererror:
+          $ref: '#/components/schemas/Error'
+      readOnly: true
+    KeyVaultError:
+      type: object
+      description: The key vault error exception.
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+      readOnly: true
+  parameters:
+    CertificateVersionParameter:
+      name: certificate-version
+      in: path
+      required: true
+      description: The version of the certificate. This URI fragment is optional. If not specified, the latest version of the certificate is returned.
+      schema:
+        type: string
+    CertificateNameParameter:
+      name: certificate-name
+      in: path
+      required: true
+      description: The name of the certificate.
+      schema:
+        type: string
+        pattern: ^[0-9a-zA-Z-]+$
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: The API version to use for this operation.
+      schema:
+        type: string
+        minLength: 1
+        default: '7.4'
+    MaxResultsParameter:
+      name: maxresults
+      in: query
+      required: false
+      description: Maximum number of results to return in a page. If not specified, the service will return up to 25 results.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 25
+  securitySchemes:
+    OAuth2Auth:
+      type: oauth2
+      description: Azure Active Directory OAuth2 authentication. Requires an access token scoped to the Key Vault resource.
+      flows:
+        implicit:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+          scopes:
+            https://vault.azure.net/.default: Access Azure Key Vault
+externalDocs:
+  description: Azure Key Vault REST API Reference
+  url: https://learn.microsoft.com/en-us/rest/api/keyvault/
