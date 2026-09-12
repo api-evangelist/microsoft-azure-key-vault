@@ -13,6 +13,11 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "microsoft-azure-key-vault-certificates-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "microsoft-azure-key-vault-keys-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "microsoft-azure-key-vault-secrets-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

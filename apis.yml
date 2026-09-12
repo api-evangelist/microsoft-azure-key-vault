@@ -510,6 +510,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: Website
+    url: https://www.microsoft.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/azure-key-vault/overview
   - type: AgenticAccess
@@ -576,3 +578,5 @@ common:
         description: Encrypt Azure VM disks using customer-managed keys stored in Key Vault.
       - name: Azure SQL Database
         description: Enable Transparent Data Encryption with customer-managed keys from Key Vault.
+x-parent: microsoft-azure
+x-relationship: product
