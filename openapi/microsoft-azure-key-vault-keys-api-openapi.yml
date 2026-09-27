@@ -369,76 +369,17 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    MaxResultsParameter:
-      name: maxresults
-      in: query
-      required: false
-      description: Maximum number of results to return in a page. If not specified, the service will return up to 25 results.
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-        maximum: 25
-    KeyNameParameter:
-      name: key-name
-      in: path
-      required: true
-      description: The name of the key.
-      schema:
-        type: string
-        pattern: ^[0-9a-zA-Z-]+$
-    KeyVersionParameter:
-      name: key-version
-      in: path
-      required: true
-      description: The version of the key. This URI fragment is optional. If not specified, the latest version of the key is returned.
-      schema:
-        type: string
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: The API version to use for this operation.
-      schema:
-        type: string
-        minLength: 1
-        default: '7.4'
   schemas:
-    KeyVerifyParameters:
-      type: object
-      description: The key verify parameters.
-      required:
-      - alg
-      - digest
-      - value
-      properties:
-        alg:
-          type: string
-          description: The signing/verification algorithm identifier.
-          enum:
-          - PS256
-          - PS384
-          - PS512
-          - RS256
-          - RS384
-          - RS512
-          - RSNULL
-          - ES256
-          - ES384
-          - ES512
-          - ES256K
-          example: PS256
-        digest:
-          type: string
-          format: base64url
-          description: The digest used for signing.
-          example: example_value
-        value:
-          type: string
-          format: base64url
-          description: The signature to verify.
-          example: example_value
+    JsonWebKeyType:
+      type: string
+      description: JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.
+      enum:
+      - EC
+      - EC-HSM
+      - RSA
+      - RSA-HSM
+      - oct
+      - oct-HSM
     KeyUpdateParameters:
       type: object
       description: The key update parameters.
@@ -475,6 +416,39 @@ components:
           description: The URL to get the next set of keys.
           readOnly: true
           example: example_value
+    KeyBundle:
+      type: object
+      description: A KeyBundle consisting of a WebKey plus its attributes.
+      properties:
+        key:
+          $ref: '#/components/schemas/JsonWebKey'
+        attributes:
+          $ref: '#/components/schemas/KeyAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        managed:
+          type: boolean
+          description: True if the key's lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.
+          readOnly: true
+          example: true
+        release_policy:
+          $ref: '#/components/schemas/KeyReleasePolicy'
+    JsonWebKeyOperation:
+      type: string
+      description: JSON web key operations.
+      enum:
+      - encrypt
+      - decrypt
+      - sign
+      - verify
+      - wrapKey
+      - unwrapKey
+      - import
+      - export
     KeyVerifyResult:
       type: object
       description: The key verify result.
@@ -484,112 +458,70 @@ components:
           description: True if the signature is verified, otherwise false.
           readOnly: true
           example: true
-    KeyReleasePolicy:
+    Error:
       type: object
-      description: The policy rules under which the key can be exported.
+      description: The key vault server error.
       properties:
-        contentType:
+        code:
           type: string
-          description: Content type and version of key release policy.
-          default: application/json; charset=utf-8
-          example: example_value
-        data:
-          type: string
-          format: base64url
-          description: Blob encoding the policy rules under which the key can be released.
-          example: example_value
-        immutable:
-          type: boolean
-          description: Defines the mutability state of the policy. Once marked immutable, this flag cannot be reset and the policy cannot be changed under any circumstances.
-          example: true
-    KeyOperationResult:
-      type: object
-      description: The key operation result.
-      properties:
-        kid:
-          type: string
-          description: Key identifier.
+          description: The error code.
           readOnly: true
-          example: '500123'
+          example: example_value
+        message:
+          type: string
+          description: The error message.
+          readOnly: true
+          example: example_value
+        innererror:
+          $ref: '#/components/schemas/Error'
+      readOnly: true
+    KeyOperationsParameters:
+      type: object
+      description: The key operations parameters.
+      required:
+      - alg
+      - value
+      properties:
+        alg:
+          type: string
+          description: Algorithm identifier.
+          enum:
+          - RSA-OAEP
+          - RSA-OAEP-256
+          - RSA1_5
+          - A128GCM
+          - A192GCM
+          - A256GCM
+          - A128KW
+          - A192KW
+          - A256KW
+          - A128CBC
+          - A192CBC
+          - A256CBC
+          - A128CBCPAD
+          - A192CBCPAD
+          - A256CBCPAD
+          example: RSA-OAEP
         value:
           type: string
           format: base64url
-          description: The result of the operation.
-          readOnly: true
+          description: The value to operate on.
           example: example_value
         iv:
           type: string
           format: base64url
           description: Initialization vector for symmetric algorithms.
-          readOnly: true
-          example: example_value
-        tag:
-          type: string
-          format: base64url
-          description: Authentication tag for authenticated encryption algorithms.
-          readOnly: true
           example: example_value
         aad:
           type: string
           format: base64url
-          description: Additional authenticated data.
-          readOnly: true
+          description: Additional data to authenticate but not encrypt/decrypt.
           example: example_value
-    KeyCreateParameters:
-      type: object
-      description: The key create parameters.
-      required:
-      - kty
-      properties:
-        kty:
-          $ref: '#/components/schemas/JsonWebKeyType'
-        key_size:
-          type: integer
-          format: int32
-          description: 'The key size in bits. For example: 2048, 3072, or 4096 for RSA.'
-          example: 10
-        public_exponent:
-          type: integer
-          format: int32
-          description: The public exponent for a RSA key.
-          example: 10
-        key_ops:
-          type: array
-          items:
-            $ref: '#/components/schemas/JsonWebKeyOperation'
-          description: JSON web key operations.
-          example: []
-        attributes:
-          $ref: '#/components/schemas/KeyAttributes'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          description: Application specific metadata in the form of key-value pairs.
+        tag:
+          type: string
+          format: base64url
+          description: The tag to verify when performing decryption with an authenticated algorithm.
           example: example_value
-        crv:
-          $ref: '#/components/schemas/JsonWebKeyCurveName'
-        release_policy:
-          $ref: '#/components/schemas/KeyReleasePolicy'
-    DeletionRecoveryLevel:
-      type: string
-      description: Reflects the deletion recovery level currently in effect for objects in the current vault.
-      enum:
-      - Purgeable
-      - Recoverable+Purgeable
-      - Recoverable
-      - Recoverable+ProtectedSubscription
-      - CustomizedRecoverable+Purgeable
-      - CustomizedRecoverable
-      - CustomizedRecoverable+ProtectedSubscription
-    JsonWebKeyCurveName:
-      type: string
-      description: Elliptic curve name.
-      enum:
-      - P-256
-      - P-384
-      - P-521
-      - P-256K
     JsonWebKey:
       type: object
       description: As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18.
@@ -668,117 +600,96 @@ components:
           format: base64url
           description: Y component of an EC public key.
           example: example_value
-    KeyItem:
+    DeletionRecoveryLevel:
+      type: string
+      description: Reflects the deletion recovery level currently in effect for objects in the current vault.
+      enum:
+      - Purgeable
+      - Recoverable+Purgeable
+      - Recoverable
+      - Recoverable+ProtectedSubscription
+      - CustomizedRecoverable+Purgeable
+      - CustomizedRecoverable
+      - CustomizedRecoverable+ProtectedSubscription
+    KeyOperationResult:
       type: object
-      description: The key item containing key metadata.
+      description: The key operation result.
       properties:
         kid:
           type: string
           description: Key identifier.
-          example: '500123'
-        attributes:
-          $ref: '#/components/schemas/KeyAttributes'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          description: Application specific metadata in the form of key-value pairs.
-          example: example_value
-        managed:
-          type: boolean
-          description: True if the key's lifetime is managed by key vault.
           readOnly: true
-          example: true
-    DeletedKeyBundle:
-      type: object
-      description: A deleted key bundle consisting of a WebKey plus its attributes.
-      allOf:
-      - $ref: '#/components/schemas/KeyBundle'
-      properties:
-        recoveryId:
+          example: '500123'
+        value:
           type: string
-          description: The url of the recovery object, used to identify and recover the deleted key.
-          example: '500123'
-        scheduledPurgeDate:
-          type: integer
-          format: unixtime
-          description: The time when the key is scheduled to be purged, in UTC.
+          format: base64url
+          description: The result of the operation.
           readOnly: true
-          example: 10
-        deletedDate:
-          type: integer
-          format: unixtime
-          description: The time when the key was deleted, in UTC.
+          example: example_value
+        iv:
+          type: string
+          format: base64url
+          description: Initialization vector for symmetric algorithms.
           readOnly: true
-          example: 10
-    KeyOperationsParameters:
+          example: example_value
+        tag:
+          type: string
+          format: base64url
+          description: Authentication tag for authenticated encryption algorithms.
+          readOnly: true
+          example: example_value
+        aad:
+          type: string
+          format: base64url
+          description: Additional authenticated data.
+          readOnly: true
+          example: example_value
+    KeyReleasePolicy:
       type: object
-      description: The key operations parameters.
+      description: The policy rules under which the key can be exported.
+      properties:
+        contentType:
+          type: string
+          description: Content type and version of key release policy.
+          default: application/json; charset=utf-8
+          example: example_value
+        data:
+          type: string
+          format: base64url
+          description: Blob encoding the policy rules under which the key can be released.
+          example: example_value
+        immutable:
+          type: boolean
+          description: Defines the mutability state of the policy. Once marked immutable, this flag cannot be reset and the policy cannot be changed under any circumstances.
+          example: true
+    KeySignParameters:
+      type: object
+      description: The key sign parameters.
       required:
       - alg
       - value
       properties:
         alg:
           type: string
-          description: Algorithm identifier.
+          description: The signing/verification algorithm identifier.
           enum:
-          - RSA-OAEP
-          - RSA-OAEP-256
-          - RSA1_5
-          - A128GCM
-          - A192GCM
-          - A256GCM
-          - A128KW
-          - A192KW
-          - A256KW
-          - A128CBC
-          - A192CBC
-          - A256CBC
-          - A128CBCPAD
-          - A192CBCPAD
-          - A256CBCPAD
-          example: RSA-OAEP
+          - PS256
+          - PS384
+          - PS512
+          - RS256
+          - RS384
+          - RS512
+          - RSNULL
+          - ES256
+          - ES384
+          - ES512
+          - ES256K
+          example: PS256
         value:
           type: string
           format: base64url
-          description: The value to operate on.
+          description: The digest value to sign.
           example: example_value
-        iv:
-          type: string
-          format: base64url
-          description: Initialization vector for symmetric algorithms.
-          example: example_value
-        aad:
-          type: string
-          format: base64url
-          description: Additional data to authenticate but not encrypt/decrypt.
-          example: example_value
-        tag:
-          type: string
-          format: base64url
-          description: The tag to verify when performing decryption with an authenticated algorithm.
-          example: example_value
-    KeyBundle:
-      type: object
-      description: A KeyBundle consisting of a WebKey plus its attributes.
-      properties:
-        key:
-          $ref: '#/components/schemas/JsonWebKey'
-        attributes:
-          $ref: '#/components/schemas/KeyAttributes'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          description: Application specific metadata in the form of key-value pairs.
-          example: example_value
-        managed:
-          type: boolean
-          description: True if the key's lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.
-          readOnly: true
-          example: true
-        release_policy:
-          $ref: '#/components/schemas/KeyReleasePolicy'
     KeyAttributes:
       type: object
       description: The attributes of a key managed by the key vault service.
@@ -826,23 +737,106 @@ components:
           description: The underlying HSM Platform.
           readOnly: true
           example: example_value
-    JsonWebKeyOperation:
-      type: string
-      description: JSON web key operations.
-      enum:
-      - encrypt
-      - decrypt
-      - sign
-      - verify
-      - wrapKey
-      - unwrapKey
-      - import
-      - export
-    KeySignParameters:
+    KeyCreateParameters:
       type: object
-      description: The key sign parameters.
+      description: The key create parameters.
+      required:
+      - kty
+      properties:
+        kty:
+          $ref: '#/components/schemas/JsonWebKeyType'
+        key_size:
+          type: integer
+          format: int32
+          description: 'The key size in bits. For example: 2048, 3072, or 4096 for RSA.'
+          example: 10
+        public_exponent:
+          type: integer
+          format: int32
+          description: The public exponent for a RSA key.
+          example: 10
+        key_ops:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonWebKeyOperation'
+          description: JSON web key operations.
+          example: []
+        attributes:
+          $ref: '#/components/schemas/KeyAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        crv:
+          $ref: '#/components/schemas/JsonWebKeyCurveName'
+        release_policy:
+          $ref: '#/components/schemas/KeyReleasePolicy'
+    KeyVaultError:
+      type: object
+      description: The key vault error exception.
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+      readOnly: true
+    KeyItem:
+      type: object
+      description: The key item containing key metadata.
+      properties:
+        kid:
+          type: string
+          description: Key identifier.
+          example: '500123'
+        attributes:
+          $ref: '#/components/schemas/KeyAttributes'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application specific metadata in the form of key-value pairs.
+          example: example_value
+        managed:
+          type: boolean
+          description: True if the key's lifetime is managed by key vault.
+          readOnly: true
+          example: true
+    DeletedKeyBundle:
+      type: object
+      description: A deleted key bundle consisting of a WebKey plus its attributes.
+      allOf:
+      - $ref: '#/components/schemas/KeyBundle'
+      properties:
+        recoveryId:
+          type: string
+          description: The url of the recovery object, used to identify and recover the deleted key.
+          example: '500123'
+        scheduledPurgeDate:
+          type: integer
+          format: unixtime
+          description: The time when the key is scheduled to be purged, in UTC.
+          readOnly: true
+          example: 10
+        deletedDate:
+          type: integer
+          format: unixtime
+          description: The time when the key was deleted, in UTC.
+          readOnly: true
+          example: 10
+    JsonWebKeyCurveName:
+      type: string
+      description: Elliptic curve name.
+      enum:
+      - P-256
+      - P-384
+      - P-521
+      - P-256K
+    KeyVerifyParameters:
+      type: object
+      description: The key verify parameters.
       required:
       - alg
+      - digest
       - value
       properties:
         alg:
@@ -861,45 +855,51 @@ components:
           - ES512
           - ES256K
           example: PS256
+        digest:
+          type: string
+          format: base64url
+          description: The digest used for signing.
+          example: example_value
         value:
           type: string
           format: base64url
-          description: The digest value to sign.
+          description: The signature to verify.
           example: example_value
-    Error:
-      type: object
-      description: The key vault server error.
-      properties:
-        code:
-          type: string
-          description: The error code.
-          readOnly: true
-          example: example_value
-        message:
-          type: string
-          description: The error message.
-          readOnly: true
-          example: example_value
-        innererror:
-          $ref: '#/components/schemas/Error'
-      readOnly: true
-    KeyVaultError:
-      type: object
-      description: The key vault error exception.
-      properties:
-        error:
-          $ref: '#/components/schemas/Error'
-      readOnly: true
-    JsonWebKeyType:
-      type: string
-      description: JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.
-      enum:
-      - EC
-      - EC-HSM
-      - RSA
-      - RSA-HSM
-      - oct
-      - oct-HSM
+  parameters:
+    KeyVersionParameter:
+      name: key-version
+      in: path
+      required: true
+      description: The version of the key. This URI fragment is optional. If not specified, the latest version of the key is returned.
+      schema:
+        type: string
+    KeyNameParameter:
+      name: key-name
+      in: path
+      required: true
+      description: The name of the key.
+      schema:
+        type: string
+        pattern: ^[0-9a-zA-Z-]+$
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: The API version to use for this operation.
+      schema:
+        type: string
+        minLength: 1
+        default: '7.4'
+    MaxResultsParameter:
+      name: maxresults
+      in: query
+      required: false
+      description: Maximum number of results to return in a page. If not specified, the service will return up to 25 results.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 25
   securitySchemes:
     OAuth2Auth:
       type: oauth2
