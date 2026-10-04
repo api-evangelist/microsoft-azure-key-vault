@@ -510,6 +510,9 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: CapabilityMap
+    url: capabilities/microsoft-azure-key-vault-capability-edges.yml
+    name: Azure Key Vault Business Capability Map
   - type: Website
     url: https://www.microsoft.com/
   - type: PostmanWorkspace

@@ -1,0 +1,47 @@
+slug: microsoft-azure-key-vault
+provider: Azure Key Vault
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Keys
+  spec_file: microsoft-azure-key-vault-keys-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: 'Azure Key Vault Encrypt ... Azure Key Vault Sign ... Azure Key Vault Wrap Key ... schemas:
+    JsonWebKey, KeyReleasePolicy'
+  reason: Cryptographic key lifecycle and operations (encrypt, decrypt, sign, verify, wrap) are core cybersecurity
+    controls. Mapped at L1 since key management spans security architecture and governance rather than
+    one named L2.
+- tag: Certificates
+  spec_file: microsoft-azure-key-vault-certificates-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: 'Azure Key Vault Create Certificate ... Azure Key Vault Get Certificate Policy ... schemas:
+    CertificatePolicy, X509CertificateProperties'
+  reason: Lifecycle management of X.509 certificates and issuance policies inside a secrets vault is a
+    cybersecurity control capability. No single L2 cleanly covers certificate lifecycle, so only the L1
+    is asserted.
+- tag: Secrets
+  spec_file: microsoft-azure-key-vault-secrets-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: 'Azure Key Vault Set Secret ... Azure Key Vault Backup Secret ... schemas: SecretBundle, SecretAttributes'
+  reason: Storage, versioning, backup and restore of application secrets is a security control capability
+    (and overlaps Configuration & Secrets Management); asserted at the Cybersecurity L1 only because the
+    vendor positions this as a general-purpose security service rather than a SaaS release pipeline tool.
