@@ -137,3 +137,69 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units:
+  - compute
+  - object
+  - request
+  plans:
+  - name: Key Vault Standard
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    - request
+    periods:
+    - per-use
+  - name: Key Vault Premium
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - object
+    - request
+    periods:
+    - month
+    - per-use
+  - name: Managed HSM
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - compute
+    periods:
+    - per-use
+  - name: Standard
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    - request
+    periods:
+    - per-use
+  - name: Premium
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - object
+    - request
+    periods:
+    - month
+    - per-use
+  - name: Managed HSM
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - compute
+    - request
+    periods:
+    - hour
+    - per-use
