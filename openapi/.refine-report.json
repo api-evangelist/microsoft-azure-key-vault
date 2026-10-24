@@ -1,24 +1,19 @@
 {
   "provider": "microsoft-azure-key-vault",
   "sources": [
-    "_original/azure-key-vault-data-plane-openapi.yml"
+    "_original/microsoft-azure-key-vault-openapi.json"
   ],
   "outputs": [
-    "microsoft-azure-key-vault-certificates-api-openapi.yml",
-    "microsoft-azure-key-vault-keys-api-openapi.yml",
-    "microsoft-azure-key-vault-secrets-api-openapi.yml"
+    "microsoft-azure-key-vault-webapps-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "azure-key-vault-data-plane-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "microsoft-azure-key-vault-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "microsoft-azure-key-vault-openapi.json: declared missing tag: WebApps",
+    "apis.yml register: written (+1 apis, 4 total)"
   ],
-  "skipped": [
-    "microsoft-azure-key-vault-certificates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "microsoft-azure-key-vault-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "microsoft-azure-key-vault-secrets-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }
