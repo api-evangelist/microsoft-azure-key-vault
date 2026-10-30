@@ -1,4 +1,4 @@
-# Azure Key Vault (azure-key-vault)
+# Azure Key Vault
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,210 +66,256 @@
 
 Azure Key Vault is a cloud service for securely storing and accessing secrets, keys, and certificates. It helps safeguard cryptographic keys and secrets used by cloud applications and services.
 
-**APIs.json:** [https://azure.microsoft.com/en-us/services/key-vault/](https://azure.microsoft.com/en-us/services/key-vault/)
+**Areas:** Certificates · Cloud Security · Cryptography · Key Management · Secrets Management · Security
 
-## Tags
+## Azure Key Vault on APIs.io
 
-- Certificates
-- Cloud Security
-- Cryptography
-- Key Management
-- Secrets Management
-- Security
+Everything profiled for Azure Key Vault is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/microsoft-azure-key-vault/](https://apis.io/providers/microsoft-azure-key-vault/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2024
-- **Modified:** 2026-05-19
+- [Azure Key Vault Keys API](https://apis.io/apis/microsoft-azure-key-vault/azure-key-vault-keys-api/) — REST API for creating, importing, updating, and performing cryptographic operations with keys in Azure Key Vault. Supports RSA, EC, and symmetric key types…
+- [Azure Key Vault Secrets API](https://apis.io/apis/microsoft-azure-key-vault/azure-key-vault-secrets-api/) — REST API for securely storing and managing secrets such as passwords, connection strings, and API keys in Azure Key Vault.
+- [Azure Key Vault Certificates API](https://apis.io/apis/microsoft-azure-key-vault/azure-key-vault-certificates-api/) — REST API for creating, importing, managing, and renewing certificates in Azure Key Vault.
+- [Azure Key Vault Certificates API](https://apis.io/apis/microsoft-azure-key-vault/microsoft-azure-key-vault-certificates-api/) — Operations for creating, importing, managing, and renewing certificates including lifecycle management and certificate authority integration.
+- [Azure Key Vault Keys API](https://apis.io/apis/microsoft-azure-key-vault/microsoft-azure-key-vault-keys-api/) — Operations for creating, importing, managing, and performing cryptographic operations with keys.
+- [Azure Key Vault Secrets API](https://apis.io/apis/microsoft-azure-key-vault/microsoft-azure-key-vault-secrets-api/) — Operations for securely storing and managing secrets such as passwords, connection strings, and API keys.
 
-## APIs
+### Published properties
 
-### Azure Key Vault API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for managing vaults, keys, secrets, and certificates in Azure Key Vault.
+#### Agentic access (1)
 
-- **Human URL:** [https://azure.microsoft.com/en-us/services/key-vault/](https://azure.microsoft.com/en-us/services/key-vault/)
-- **Base URL:** `https://management.azure.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Microsoft Azure Key Vault Agentic Access](https://apis.io/agentic-access/microsoft-azure-key-vault/microsoft-azure-key-vault-agentic-access/)
 
-- Certificates
-- Keys
-- Secrets
-- Vaults
+#### JSON Schema (91)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://docs.microsoft.com/en-us/azure/key-vault/)
-- [OpenAPI](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/keyvault/resource-manager/Microsoft.KeyVault/stable/2023-02-01/keyvault.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [BackupSecretResult](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-backup-secret-result/)
+- [CertificateAttributes](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-attributes/)
+- [CertificateBundle](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-bundle/)
+- [CertificateCreateParameters](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-create-parameters/)
+- [CertificateImportParameters](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-import-parameters/)
+- [CertificateItem](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-item/)
+- [CertificateListResult](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-list-result/)
+- [CertificateOperation](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-operation/)
+- [CertificatePolicy](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-policy/)
+- [CertificateUpdateParameters](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-update-parameters/)
+- [DeletedCertificateBundle](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-certificate-bundle/)
+- [DeletedKeyBundle](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-key-bundle/)
+- [DeletedSecretBundle](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-secret-bundle/)
+- [DeletionRecoveryLevel](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-deletion-recovery-level/)
+- [Error](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-error/)
+- [IssuerParameters](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-issuer-parameters/)
+- [JsonWebKey](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key/)
+- [JsonWebKeyCurveName](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-curve-name/)
+- [JsonWebKeyOperation](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-operation/)
+- [JsonWebKeyType](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-type/)
+- [KeyAttributes](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-key-attributes/)
+- [KeyBundle](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-key-bundle/)
+- [KeyCreateParameters](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-key-create-parameters/)
+- [KeyItem](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-key-item/)
+- [KeyListResult](https://apis.io/schemas/microsoft-azure-key-vault/azure-key-vault-data-plane-key-list-result/)
+- …and 66 more published on APIs.io
+
+#### JSON Structure (46)
+
+Data models expressed in JSON Structure.
+
+- [Azure Key Vault Data Plane Backup Secret Result Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-backup-secret-result-structure/)
+- [Azure Key Vault Data Plane Certificate Attributes Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-attributes-structure/)
+- [Azure Key Vault Data Plane Certificate Bundle Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-bundle-structure/)
+- [Azure Key Vault Data Plane Certificate Create Parameters Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-create-parameters-structure/)
+- [Azure Key Vault Data Plane Certificate Import Parameters Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-import-parameters-structure/)
+- [Azure Key Vault Data Plane Certificate Item Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-item-structure/)
+- [Azure Key Vault Data Plane Certificate List Result Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-list-result-structure/)
+- [Azure Key Vault Data Plane Certificate Operation Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-operation-structure/)
+- [Azure Key Vault Data Plane Certificate Policy Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-policy-structure/)
+- [Azure Key Vault Data Plane Certificate Update Parameters Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-update-parameters-structure/)
+- [Azure Key Vault Data Plane Deleted Certificate Bundle Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-certificate-bundle-structure/)
+- [Azure Key Vault Data Plane Deleted Key Bundle Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-key-bundle-structure/)
+- [Azure Key Vault Data Plane Deleted Secret Bundle Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-secret-bundle-structure/)
+- [Azure Key Vault Data Plane Deletion Recovery Level Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-deletion-recovery-level-structure/)
+- [Azure Key Vault Data Plane Error Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-error-structure/)
+- [Azure Key Vault Data Plane Issuer Parameters Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-issuer-parameters-structure/)
+- [Azure Key Vault Data Plane Json Web Key Curve Name Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-curve-name-structure/)
+- [Azure Key Vault Data Plane Json Web Key Operation Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-operation-structure/)
+- [Azure Key Vault Data Plane Json Web Key Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-structure/)
+- [Azure Key Vault Data Plane Json Web Key Type Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-type-structure/)
+- [Azure Key Vault Data Plane Key Attributes Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-key-attributes-structure/)
+- [Azure Key Vault Data Plane Key Bundle Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-key-bundle-structure/)
+- [Azure Key Vault Data Plane Key Create Parameters Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-key-create-parameters-structure/)
+- [Azure Key Vault Data Plane Key Item Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-key-item-structure/)
+- [Azure Key Vault Data Plane Key List Result Structure](https://apis.io/json-structure/microsoft-azure-key-vault/azure-key-vault-data-plane-key-list-result-structure/)
+- …and 21 more published on APIs.io
+
+#### JSON-LD (2)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Azure Key Vault Context](https://apis.io/jsonld/microsoft-azure-key-vault/azure-key-vault-context/)
+- [Azure Key Vault Data Plane Context](https://apis.io/jsonld/microsoft-azure-key-vault/azure-key-vault-data-plane-context/)
+
+#### Vocabulary (2)
+
+The provider's domain terms, defined.
+
+- [azure-key-vault API Vocabulary](https://apis.io/vocabularies/microsoft-azure-key-vault/azure-key-vault-vocabulary/)
+- [Azure Key Vault Domain Vocabulary](https://apis.io/vocabularies/microsoft-azure-key-vault/microsoft-azure-key-vault-vocabulary/)
+
+#### Examples (45)
+
+Example requests and responses.
+
+- [Azure Key Vault Data Plane Backup Secret Result Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-backup-secret-result-example/)
+- [Azure Key Vault Data Plane Certificate Attributes Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-attributes-example/)
+- [Azure Key Vault Data Plane Certificate Bundle Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-bundle-example/)
+- [Azure Key Vault Data Plane Certificate Create Parameters Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-create-parameters-example/)
+- [Azure Key Vault Data Plane Certificate Import Parameters Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-import-parameters-example/)
+- [Azure Key Vault Data Plane Certificate Item Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-item-example/)
+- [Azure Key Vault Data Plane Certificate List Result Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-list-result-example/)
+- [Azure Key Vault Data Plane Certificate Operation Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-operation-example/)
+- [Azure Key Vault Data Plane Certificate Policy Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-policy-example/)
+- [Azure Key Vault Data Plane Certificate Update Parameters Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-certificate-update-parameters-example/)
+- [Azure Key Vault Data Plane Deleted Certificate Bundle Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-certificate-bundle-example/)
+- [Azure Key Vault Data Plane Deleted Key Bundle Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-key-bundle-example/)
+- [Azure Key Vault Data Plane Deleted Secret Bundle Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-deleted-secret-bundle-example/)
+- [Azure Key Vault Data Plane Deletion Recovery Level Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-deletion-recovery-level-example/)
+- [Azure Key Vault Data Plane Error Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-error-example/)
+- [Azure Key Vault Data Plane Issuer Parameters Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-issuer-parameters-example/)
+- [Azure Key Vault Data Plane Json Web Key Curve Name Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-curve-name-example/)
+- [Azure Key Vault Data Plane Json Web Key Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-example/)
+- [Azure Key Vault Data Plane Json Web Key Operation Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-operation-example/)
+- [Azure Key Vault Data Plane Json Web Key Type Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-json-web-key-type-example/)
+- [Azure Key Vault Data Plane Key Attributes Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-key-attributes-example/)
+- [Azure Key Vault Data Plane Key Bundle Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-key-bundle-example/)
+- [Azure Key Vault Data Plane Key Create Parameters Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-key-create-parameters-example/)
+- [Azure Key Vault Data Plane Key Item Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-key-item-example/)
+- [Azure Key Vault Data Plane Key List Result Example](https://apis.io/examples/microsoft-azure-key-vault/azure-key-vault-data-plane-key-list-result-example/)
+- …and 20 more published on APIs.io
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Azure Key Vault Data Plane API](https://apis.io/collections/microsoft-azure-key-vault/open-azure-key-vault-data-plane/)
+- [Azure Key Vault Data Plane Certificates API](https://apis.io/collections/microsoft-azure-key-vault/open-microsoft-azure-key-vault-certificates-api/)
+- [Azure Key Vault Data Plane Certificates Keys API](https://apis.io/collections/microsoft-azure-key-vault/open-microsoft-azure-key-vault-keys-api/)
+- [Azure Key Vault Data Plane Certificates Secrets API](https://apis.io/collections/microsoft-azure-key-vault/open-microsoft-azure-key-vault-secrets-api/)
+- [Azure Key Vault Data Plane Certificates API](https://apis.io/collections/microsoft-azure-key-vault/postman-microsoft-azure-key-vault-certificates-api/)
+- [Azure Key Vault Data Plane Certificates Keys API](https://apis.io/collections/microsoft-azure-key-vault/postman-microsoft-azure-key-vault-keys-api/)
+- [Azure Key Vault Data Plane Certificates Secrets API](https://apis.io/collections/microsoft-azure-key-vault/postman-microsoft-azure-key-vault-secrets-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Azure Key Vault — azure key vault rules](https://apis.io/rules/microsoft-azure-key-vault/azure-key-vault-spectral-rules/)
+- [Azure Key Vault — jsonschema rules](https://apis.io/rules/microsoft-azure-key-vault/microsoft-azure-key-vault-jsonschema-spectral-rules/)
+- [Azure Key Vault API Rules](https://apis.io/rules/microsoft-azure-key-vault/microsoft-azure-key-vault-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Microsoft Azure Key Vault Authentication](https://apis.io/security/microsoft-azure-key-vault/microsoft-azure-key-vault-authentication/)
+- [Microsoft Azure Key Vault Domain Security](https://apis.io/security/microsoft-azure-key-vault/microsoft-azure-key-vault-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Microsoft Azure Key Vault Scopes](https://apis.io/scopes/microsoft-azure-key-vault/microsoft-azure-key-vault-scopes/)
+
+#### Plans and pricing (2)
+
+Published plans, tiers and prices.
+
+- [Azure Key Vault Plans Pricing](https://apis.io/plans/microsoft-azure-key-vault/azure-key-vault-plans-pricing/)
+- [Microsoft Azure Key Vault Plans Pricing](https://apis.io/plans/microsoft-azure-key-vault/microsoft-azure-key-vault-plans-pricing/)
+
+#### Rate limits (2)
+
+Published request limits.
+
+- [Azure Key Vault Rate Limits](https://apis.io/rate-limits/microsoft-azure-key-vault/azure-key-vault-rate-limits/)
+- [Microsoft Azure Key Vault Rate Limits](https://apis.io/rate-limits/microsoft-azure-key-vault/microsoft-azure-key-vault-rate-limits/)
+
+#### FinOps (2)
+
+What the API costs to run, by operation.
+
+- [Azure Key Vault Finops](https://apis.io/finops/microsoft-azure-key-vault/azure-key-vault-finops/)
+- [Microsoft Azure Key Vault Finops](https://apis.io/finops/microsoft-azure-key-vault/microsoft-azure-key-vault-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.microsoft.com/)
 - [Pricing](https://azure.microsoft.com/en-us/pricing/details/key-vault/)
-- [Getting Started](https://docs.microsoft.com/en-us/azure/key-vault/general/overview)
-- [Authentication](https://docs.microsoft.com/en-us/azure/key-vault/general/authentication)
-- [Best Practices](https://docs.microsoft.com/en-us/azure/key-vault/general/best-practices)
-- [Security](https://learn.microsoft.com/en-us/azure/key-vault/general/secure-key-vault)
-- [Postman Collection](collections/azure-key-vault-data-plane.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-key-vault-data-plane.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Azure Key Vault Data Plane API
-
-API for performing cryptographic operations and managing keys, secrets, and certificates within a specific Key Vault instance.
-
-- **Human URL:** [https://docs.microsoft.com/en-us/rest/api/keyvault/](https://docs.microsoft.com/en-us/rest/api/keyvault/)
-- **Base URL:** `https://{vault-name}.vault.azure.net`
-
-#### Tags
-
-- Certificate Operations
-- Cryptographic Operations
-- Key Operations
-- Secret Operations
-
-#### Properties
-
-- [Documentation](https://docs.microsoft.com/en-us/rest/api/keyvault/)
-- [OpenAPI](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/keyvault/data-plane/Microsoft.KeyVault/stable/7.4/keyvault.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/azure-key-vault-data-plane-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/azure-key-vault-data-plane.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-key-vault-data-plane.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [API Reference](https://docs.microsoft.com/en-us/rest/api/keyvault/keys)
-- [JSON Schema](json-schema/azure-key-vault-secret-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-bundle-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-create-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-list-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-operation-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-operations-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-sign-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-update-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-verify-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-verify-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-attributes-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-properties-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-release-policy-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-json-web-key-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-json-web-key-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-json-web-key-operation-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-json-web-key-curve-name-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-bundle-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-set-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-update-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-list-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-attributes-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-properties-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-secret-restore-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-backup-secret-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-bundle-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-create-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-import-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-update-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-list-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-attributes-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-operation-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-certificate-policy-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-issuer-parameters-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-lifetime-action-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-subject-alternative-names-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-x509-certificate-properties-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-deleted-key-bundle-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-deleted-secret-bundle-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-deleted-certificate-bundle-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-deletion-recovery-level-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-error-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/azure-key-vault-data-plane-key-vault-error-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/azure-key-vault-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON-LD](json-ld/azure-key-vault-data-plane-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [SDK](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/security.keyvault.keys-readme)
-- [SDK](https://learn.microsoft.com/en-us/python/api/overview/azure/keyvault-keys-readme)
-- [SDK](https://learn.microsoft.com/en-us/java/api/overview/azure/security-keyvault-keys-readme)
-- [SDK](https://learn.microsoft.com/en-us/javascript/api/overview/azure/keyvault-keys-readme)
-
-### Azure Key Vault Keys API
-
-REST API for creating, importing, updating, and performing cryptographic operations with keys in Azure Key Vault. Supports RSA, EC, and symmetric key types with operations including encrypt, decrypt, sign, verify, wrap, and unwrap.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/keyvault/keys](https://learn.microsoft.com/en-us/rest/api/keyvault/keys)
-- **Base URL:** `https://{vault-name}.vault.azure.net`
-
-#### Tags
-
-- Cryptographic Operations
-- Encryption
-- HSM
-- Keys
-- Signing
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/keyvault/keys)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/key-vault/keys/quick-create-net)
-- [Postman Collection](collections/azure-key-vault-data-plane.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-key-vault-data-plane.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Azure Key Vault Secrets API
-
-REST API for securely storing and managing secrets such as passwords, connection strings, and API keys in Azure Key Vault.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/keyvault/secrets](https://learn.microsoft.com/en-us/rest/api/keyvault/secrets)
-- **Base URL:** `https://{vault-name}.vault.azure.net`
-
-#### Tags
-
-- Connection Strings
-- Passwords
-- Secrets
-- Secure Storage
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/key-vault/secrets/about-secrets)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/keyvault/secrets)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-net)
-- [Postman Collection](collections/azure-key-vault-data-plane.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-key-vault-data-plane.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Azure Key Vault Certificates API
-
-REST API for creating, importing, managing, and renewing certificates in Azure Key Vault.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/keyvault/certificates](https://learn.microsoft.com/en-us/rest/api/keyvault/certificates)
-- **Base URL:** `https://{vault-name}.vault.azure.net`
-
-#### Tags
-
-- Certificate Authorities
-- Certificate Management
-- Certificates
-- SSL
-- TLS
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/keyvault/certificates)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/key-vault/certificates/quick-create-net)
-- [Postman Collection](collections/azure-key-vault-data-plane.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-key-vault-data-plane.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Status Page](https://status.azure.com/)
-- [Blog](https://azure.microsoft.com/en-us/blog/)
-- [Terms of Service](https://azure.microsoft.com/en-us/support/legal/)
-- [Privacy Policy](https://privacy.microsoft.com/en-us/privacystatement)
-- [Changelog](https://docs.microsoft.com/en-us/azure/key-vault/general/whats-new)
-- [Portal](https://portal.azure.com/)
 - [Support](https://azure.microsoft.com/en-us/support/)
-- [Pricing](https://azure.microsoft.com/en-us/pricing/details/key-vault/)
-- [Spectral Rules](rules/azure-key-vault-spectral-rules.yml)
-- [Vocabulary](vocabulary/azure-key-vault-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Changelog](https://docs.microsoft.com/en-us/azure/key-vault/general/whats-new)
+- [Blog](https://azure.microsoft.com/en-us/blog/)
+- [Terms of service](https://azure.microsoft.com/en-us/support/legal/)
+- [Privacy policy](https://privacy.microsoft.com/en-us/privacystatement)
+- [Status](https://status.azure.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 54.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 52.7 |
+| Contract governance | 27.3 |
+| Operational transparency | 50.0 |
+| Developer ergonomics | 71.0 |
+| Access clarity | 39.5 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/microsoft-azure-key-vault/](https://apis.io/providers/microsoft-azure-key-vault/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Azure Key Vault: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/microsoft-azure-key-vault/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
